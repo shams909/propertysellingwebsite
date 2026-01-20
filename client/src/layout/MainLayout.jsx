@@ -5,9 +5,9 @@ import Footer from "../component/footer/Footer";
 import { AuthContext } from "../provider/AuthProvider";
 
 const MainLayout = () => {
- 
+
   return (
-    <div>
+    <div className="bg-[#050505] min-h-screen text-white">
       <Navbar />
       <Outlet />
       <Footer />

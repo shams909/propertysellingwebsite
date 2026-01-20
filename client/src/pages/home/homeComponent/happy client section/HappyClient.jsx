@@ -29,10 +29,10 @@ const HappyClient = () => {
           lg:left-auto sm:right-10 sm:translate-x-0
           z-10
         ">
-          <div className="custom-client-prev cursor-pointer text-[#FFEEEC] bg-orange-500 shadow-md p-3 rounded-md">
+          <div className="custom-client-prev cursor-pointer bg-white/5 hover:bg-orange-500 text-white shadow-lg p-3 rounded-xl border border-white/10 backdrop-blur-md transition-all active:scale-95">
             <FaArrowLeft />
           </div>
-          <div className="custom-client-next cursor-pointer text-[#FFEEEC] bg-orange-500 shadow-md p-3 rounded-md">
+          <div className="custom-client-next cursor-pointer bg-white/5 hover:bg-orange-500 text-white shadow-lg p-3 rounded-xl border border-white/10 backdrop-blur-md transition-all active:scale-95">
             <FaArrowRight />
           </div>
         </div>

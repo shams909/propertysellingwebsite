@@ -23,9 +23,10 @@ const services = [
 
 const PropertyService = () => {
   return (
-    <div className="relative py-20 bg-[#050505]">
-      {/* Background Glow */}
-      <div className="absolute top-0 left-0 w-full h-[500px] bg-linear-to-b from-orange-500/5 to-transparent pointer-events-none" />
+    <div className="relative py-20 bg-[#050505] overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Title */}
       <div className="container mx-auto px-4 relative z-10">
@@ -50,7 +51,7 @@ const PropertyService = () => {
       </div>
 
       {/* Swiper */}
-      <div className="container mx-auto mt-10 px-4">
+      <div className="container mx-auto mt-10 px-4 relative z-10">
         <Swiper
           loop={true}
           spaceBetween={24}

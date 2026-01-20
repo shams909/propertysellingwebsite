@@ -20,10 +20,11 @@ const PropertyInfo = ({ property }) => {
   } = property;
   return (
     <div className="container mx-auto ">
-      <div className="bg-white/5 border border-white/5 backdrop-blur-xl p-8 rounded-3xl my-10 flex flex-col lg:flex-row gap-8 shadow-2xl relative overflow-hidden group">
+      <div className="bg-white/5 border border-white/10 backdrop-blur-xl p-8 rounded-3xl my-10 flex flex-col lg:flex-row gap-8 shadow-2xl relative overflow-hidden group">
 
         {/* Glow Effect */}
-        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-orange-500/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/2" />
 
         {/* Left Section */}
         <div className="flex-1 relative z-10">

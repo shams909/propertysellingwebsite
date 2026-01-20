@@ -71,112 +71,117 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 bg-white rounded-2xl shadow-xl overflow-hidden max-w-5xl w-full">
-        {/* LEFT SIDE LOTTIE */}
-        <div className="hidden lg:flex items-center justify-center bg-orange-50 p-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#050505] px-4 relative overflow-hidden">
+      {/* Background Orbs */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 bg-white/5 border border-white/10 backdrop-blur-2xl rounded-3xl shadow-2xl overflow-hidden max-w-5xl w-full relative z-10">
+
+        {/* LEFT SIDE LOTTIE - Darkened */}
+        <div className="hidden lg:flex items-center justify-center bg-black/20 p-8 border-r border-white/5">
           <DotLottieReact
             src="/lotties/Appointment booking with smartphone.lottie"
             loop
             autoplay
-            style={{ width: "100%", maxWidth: 400 }}
+            style={{ width: "100%", maxWidth: 400, filter: "brightness(0.9)" }}
           />
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="p-8 lg:p-12">
-          <h2 className="text-3xl font-bold mb-2">Welcome Back </h2>
-          <p className="text-gray-500 mb-6">
-            Login to manage your properties easily
-          </p>
+        <div className="p-8 lg:p-12 flex flex-col justify-center">
+          <div className="mb-8">
+            <h2 className="text-4xl font-bold mb-2 text-white">Welcome Back</h2>
+            <p className="text-gray-400">
+              Login to manage your properties easily
+            </p>
+          </div>
 
           <button
             onClick={handleSignInWIthGoogle}
-            className="btn btn-outline w-full mb-4 flex items-center gap-2"
+            className="btn bg-white/5 hover:bg-white/10 border-white/10 text-white w-full mb-6 flex items-center gap-3 h-12 rounded-xl transition-all"
           >
-            <FcGoogle size={20} />
-            Continue with Google
+            <FcGoogle size={22} />
+            <span className="font-medium">Continue with Google</span>
           </button>
 
-          <div className="divider">OR</div>
+          <div className="divider divider-neutral text-gray-500 mb-6">OR LOGIN WITH EMAIL</div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {/* Email */}
-            <div>
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
+            <div className="space-y-1.5">
+              <label className="text-sm font-semibold text-gray-300 ml-1">Email</label>
               <input
                 type="email"
                 placeholder="example@email.com"
-                className="input input-bordered w-full"
+                className="input bg-black/20 border-white/10 text-white w-full h-12 rounded-xl focus:border-orange-500/50 focus:outline-none placeholder-gray-600 transition-all"
                 {...register("email", { required: "Email is required" })}
               />
               {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
+                <p className="text-red-500 text-sm ml-1">{errors.email.message}</p>
               )}
             </div>
 
             {/* Password with Show/Hide */}
-            <div className="relative">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="••••••••"
-                className="input input-bordered w-full pr-12"
-                {...register("password", { required: "Password is required" })}
-              />
-              <button
-                type="button"
-                className="absolute right-2 top-0 text-gray-500"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
+            <div className="space-y-1.5 relative">
+              <label className="text-sm font-semibold text-gray-300 ml-1">Password</label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  className="input bg-black/20 border-white/10 text-white w-full h-12 rounded-xl focus:border-orange-500/50 focus:outline-none pr-12 placeholder-gray-600 transition-all"
+                  {...register("password", { required: "Password is required" })}
+                />
+                <button
+                  type="button"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors text-sm font-medium"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
               {errors.password && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-sm ml-1">
                   {errors.password.message}
                 </p>
               )}
             </div>
 
             {/* Privacy Checkbox */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3 ml-1">
               <input
                 type="checkbox"
-                className="checkbox checkbox-sm checkbox-orange"
+                className="checkbox checkbox-sm checkbox-warning border-white/30 rounded-md"
                 {...register("checkbox", { required: "Checkbox is required" })}
               />
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-400">
                 I agree to the{" "}
-                <span className="text-orange-500 cursor-pointer">
+                <span className="text-orange-500 cursor-pointer hover:underline">
                   Privacy Policy
                 </span>
               </p>
             </div>
             {errors.checkbox && (
-              <p className="text-red-500 text-sm">{errors.checkbox.message}</p>
+              <p className="text-red-500 text-sm ml-1">{errors.checkbox.message}</p>
             )}
 
             {/* Login Button */}
-            <button className="btn bg-orange-500 hover:bg-orange-600 text-white w-full flex items-center justify-center">
+            <button className="btn bg-linear-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white border-none w-full h-12 rounded-xl text-lg font-bold shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 transition-all mt-2">
               {loading ? (
                 <span className="loading loading-spinner text-white"></span>
               ) : (
-                "Login"
+                "Login Account"
               )}
             </button>
           </form>
 
-          <p className="text-sm text-gray-500 mt-6 text-center">
+          <p className="text-gray-400 mt-8 text-center text-sm">
             Don’t have an account?{" "}
             <Link
               to={"/register"}
-              className="text-orange-500 cursor-pointer font-semibold"
+              className="text-orange-500 hover:text-orange-400 cursor-pointer font-bold transition-colors"
             >
-              Sign Up
+              Sign Up Now
             </Link>
           </p>
         </div>

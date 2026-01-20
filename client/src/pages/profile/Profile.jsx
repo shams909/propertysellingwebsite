@@ -55,52 +55,55 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br  from-slate-50 via-blue-50 to-indigo-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-[#050505] relative">
+      {/* Bg Decor */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         {/* Header Background */}
-        <div className="relative h-48 bg-linear-to-r from-blue-600 to-indigo-600 rounded-t-3xl shadow-lg overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-20 -translate-y-20"></div>
-            <div className="absolute bottom-0 right-0 w-40 h-40 bg-white rounded-full translate-x-20 translate-y-20"></div>
-          </div>
+        <div className="relative h-48 bg-linear-to-r from-orange-900/40 to-black/40 rounded-t-3xl border border-white/5 border-b-0 overflow-hidden backdrop-blur-xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-transparent opacity-50"></div>
         </div>
 
         {/* Main Profile Card */}
-        <div className="bg-white rounded-b-3xl shadow-xl">
+        <div className="bg-[#0a0a0a]/80 backdrop-blur-xl rounded-b-3xl border border-white/10 shadow-2xl">
           {/* Profile Header Section */}
           <div className="relative px-4 sm:px-8 pb-6">
             <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-end -mt-24 relative z-10">
               {/* Profile Picture */}
-              <div className="relative">
+              <div className="relative group">
                 <img
                   src={
                     user?.photoURL ||
                     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
                   }
                   alt={user?.displayName || "User"}
-                  className="w-32 h-32 rounded-2xl border-4 border-white shadow-lg object-cover"
+                  className="w-32 h-32 rounded-3xl border-4 border-[#0a0a0a] shadow-2xl object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute bottom-0 right-0 bg-green-500 w-5 h-5 rounded-full border-2 border-white"></div>
+                <div className="absolute bottom-2 right-2 bg-green-500 w-4 h-4 rounded-full border-2 border-[#0a0a0a] shadow-lg shadow-green-500/50"></div>
               </div>
 
               {/* User Basic Info */}
               <div className="flex-1 mt-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 lg:text-white">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
                       {user?.displayName || "User Profile"}
                     </h1>
-                    <p className="text-indigo-600 lg:text-white font-semibold text-lg mt-2">
+                    <p className="text-orange-400 font-medium text-lg mt-1 flex items-center gap-2">
                       {profileData.role}
+                      <span className="px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 text-xs font-bold border border-orange-500/20 uppercase tracking-wider">Verified</span>
                     </p>
-                    <p className="text-gray-600 mt-1 flex items-center gap-2">
-                      <span className="text-yellow-400 text-lg">★</span>
-                      {profileData.rating} ({profileData.reviews} reviews)
+                    <p className="text-gray-400 mt-2 flex items-center gap-2 text-sm">
+                      <span className="text-yellow-400 text-base">★</span>
+                      <span className="text-white font-bold">{profileData.rating}</span>
+                      <span>({profileData.reviews} reviews)</span>
                     </p>
                   </div>
                   <button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg"
+                    className="flex items-center gap-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 font-semibold py-3 px-6 rounded-xl transition-all duration-300 backdrop-blur-md"
                   >
                     <LogOut size={20} />
                     Logout
@@ -111,107 +114,41 @@ const Profile = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4 sm:px-8 py-6 border-t border-gray-100">
-            <div className="text-center p-4 bg-linear-to-br  from-blue-50 to-blue-100 rounded-xl hover:shadow-md transition-shadow">
-              <div className="text-2xl font-bold text-blue-600">
-                {profileData.properties}
-              </div>
-              <div className="text-sm text-gray-600 mt-1">
-                Properties Listed
-              </div>
-            </div>
-            <div className="text-center p-4 bg-linear-to-br  from-purple-50 to-purple-100 rounded-xl hover:shadow-md transition-shadow">
-              <div className="text-2xl font-bold text-purple-600">
-                {profileData.reviews}
-              </div>
-              <div className="text-sm text-gray-600 mt-1">Reviews</div>
-            </div>
-            <div className="text-center p-4 bg-linear-to-br  from-pink-50 to-pink-100 rounded-xl hover:shadow-md transition-shadow">
-              <div className="text-2xl font-bold text-pink-600 flex items-center justify-center gap-1">
-                <Heart size={20} />
-                {profileData.favorites}
-              </div>
-              <div className="text-sm text-gray-600 mt-1">Favorites</div>
-            </div>
-            <div className="text-center p-4 bg-linear-to-br from-green-50 to-green-100 rounded-xl hover:shadow-md transition-shadow">
-              <div className="text-2xl font-bold text-green-600">
-                {profileData.rating}
-              </div>
-              <div className="text-sm text-gray-600 mt-1">Rating</div>
-            </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4 sm:px-8 py-8 border-t border-white/5">
+            <StatCard value={profileData.properties} label="Properties Listed" color="text-blue-400" bg="bg-blue-500/5" border="border-blue-500/20" />
+            <StatCard value={profileData.reviews} label="Total Reviews" color="text-purple-400" bg="bg-purple-500/5" border="border-purple-500/20" />
+            <StatCard value={profileData.favorites} label="Favorites" color="text-pink-400" bg="bg-pink-500/5" border="border-pink-500/20" icon={<Heart size={18} />} />
+            <StatCard value={profileData.rating} label="Average Rating" color="text-green-400" bg="bg-green-500/5" border="border-green-500/20" />
           </div>
 
           {/* Content Sections */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-4 sm:p-8">
             {/* Contact Information */}
-            <div className="lg:col-span-2">
-              <div className="bg-linear-to-br  from-slate-50 to-slate-100 rounded-2xl p-6 border border-slate-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <div className="w-1 h-8 bg-indigo-600 rounded"></div>
+            <div className="lg:col-span-2 space-y-6">
+              <div className="bg-white/5 rounded-2xl p-6 border border-white/5 backdrop-blur-md">
+                <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                  <div className="w-1 h-6 bg-orange-500 rounded-full"></div>
                   Contact Information
                 </h2>
 
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Mail className="text-blue-600" size={24} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Email</p>
-                      <p className="text-gray-900 font-semibold break-all">
-                        {user?.email || "user@example.com"}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Phone className="text-green-600" size={24} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Phone</p>
-                      <p className="text-gray-900 font-semibold">
-                        {profileData.phone}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <MapPin className="text-purple-600" size={24} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Location</p>
-                      <p className="text-gray-900 font-semibold">
-                        {profileData.location}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 p-4 bg-white rounded-xl hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <Calendar className="text-orange-600" size={24} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Member Since</p>
-                      <p className="text-gray-900 font-semibold">
-                        {profileData.joinDate}
-                      </p>
-                    </div>
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <ContactItem icon={<Mail size={20} />} label="Email" value={user?.email || "user@example.com"} color="text-blue-400" bg="bg-blue-500/10" />
+                  <ContactItem icon={<Phone size={20} />} label="Phone" value={profileData.phone} color="text-green-400" bg="bg-green-500/10" />
+                  <ContactItem icon={<MapPin size={20} />} label="Location" value={profileData.location} color="text-purple-400" bg="bg-purple-500/10" />
+                  <ContactItem icon={<Calendar size={20} />} label="Member Since" value={profileData.joinDate} color="text-orange-400" bg="bg-orange-500/10" />
                 </div>
               </div>
 
               {/* About Section */}
-              <div className="bg-linear-to-br  from-slate-50 to-slate-100 rounded-2xl p-6 border border-slate-200 mt-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <div className="w-1 h-8 bg-indigo-600 rounded"></div>
+              <div className="bg-white/5 rounded-2xl p-6 border border-white/5 backdrop-blur-md">
+                <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                  <div className="w-1 h-6 bg-orange-500 rounded-full"></div>
                   About
                 </h2>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-400 leading-relaxed text-sm">
                   {profileData.about}
                 </p>
-                <p className="text-gray-700 leading-relaxed mt-4">
+                <p className="text-gray-400 leading-relaxed mt-4 text-sm">
                   {profileData.bio}
                 </p>
               </div>
@@ -220,91 +157,101 @@ const Profile = () => {
             {/* Sidebar - Verification & Status */}
             <div className="flex flex-col gap-6">
               {/* Verification Status */}
-              <div className="bg-linear-to-br  from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
+              <div className="bg-green-500/5 rounded-2xl p-6 border border-green-500/20 backdrop-blur-md">
+                <h3 className="text-lg font-bold text-white mb-4">
                   Verification Status
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
-                      ✓
-                    </div>
-                    <span className="text-gray-700 font-medium">
-                      Email Verified
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
-                      ✓
-                    </div>
-                    <span className="text-gray-700 font-medium">
-                      Identity Verified
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white">
-                      ✓
-                    </div>
-                    <span className="text-gray-700 font-medium">
-                      Phone Verified
-                    </span>
-                  </div>
+                  <VerificationItem label="Email Verified" />
+                  <VerificationItem label="Identity Verified" />
+                  <VerificationItem label="Phone Verified" />
                 </div>
               </div>
 
               {/* Premium Badge */}
-              <div className="bg-linear-to-br  from-amber-50 to-yellow-50 rounded-2xl p-6 border-2 border-amber-300">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  Premium Member
-                </h3>
-                <p className="text-sm text-gray-700 mb-4">
-                  Enjoy exclusive benefits and priority support
-                </p>
-                <button className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
-                  Manage Membership
-                </button>
+              <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-2xl p-6 border border-amber-500/30 backdrop-blur-md relative overflow-hidden">
+                <div className="relative z-10">
+                  <h3 className="text-lg font-bold text-amber-400 mb-2">
+                    Premium Member
+                  </h3>
+                  <p className="text-sm text-gray-400 mb-4">
+                    Enjoy exclusive benefits and priority support
+                  </p>
+                  <button className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold py-2.5 px-4 rounded-xl transition-all shadow-lg shadow-amber-500/20 text-sm">
+                    Manage Membership
+                  </button>
+                </div>
               </div>
 
               {/* Recent Activity */}
-              <div className="bg-linear-to-br  from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <FileText size={20} className="text-blue-600" />
+              <div className="bg-blue-500/5 rounded-2xl p-6 border border-blue-500/20 backdrop-blur-md">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <FileText size={18} className="text-blue-400" />
                   Activity
                 </h3>
-                <div className="space-y-3 text-sm">
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Last Login:</span> Today at
-                    10:30 AM
-                  </p>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Profile Views:</span> 1,234
-                    this month
-                  </p>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Properties Viewed:</span>{" "}
-                    156 this month
-                  </p>
+                <div className="space-y-4 text-sm">
+                  <ActivityItem label="Last Login" value="Today at 10:30 AM" />
+                  <ActivityItem label="Profile Views" value="1,234 this month" />
+                  <ActivityItem label="Properties Viewed" value="156 this month" />
                 </div>
               </div>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4 sm:px-8 py-6 border-t border-gray-100">
-            <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
-              Edit Profile
-            </button>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
-              My Properties
-            </button>
-            <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
-              Settings
-            </button>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4 sm:px-8 py-8 border-t border-white/5">
+            <ActionButton label="Edit Profile" bg="bg-white/5" hover="hover:bg-white/10" text="text-white" border="border-white/10" />
+            <ActionButton label="My Properties" bg="bg-orange-500" hover="hover:bg-orange-600" text="text-white" border="border-transparent" shadow="shadow-lg shadow-orange-500/20" />
+            <ActionButton label="Settings" bg="bg-white/5" hover="hover:bg-white/10" text="text-white" border="border-white/10" />
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+// Helper Components
+const StatCard = ({ value, label, color, bg, border, icon }) => (
+  <div className={`text-center p-4 ${bg} rounded-2xl border ${border} hover:scale-105 transition-transform duration-300`}>
+    <div className={`text-2xl font-bold ${color} flex items-center justify-center gap-1.5`}>
+      {icon} {value}
+    </div>
+    <div className="text-xs font-medium text-gray-400 mt-1 uppercase tracking-wider">{label}</div>
+  </div>
+);
+
+const ContactItem = ({ icon, label, value, color, bg }) => (
+  <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/5 hover:border-white/10 transition-colors group">
+    <div className={`w-10 h-10 ${bg} rounded-lg flex items-center justify-center ${color} group-hover:scale-110 transition-transform`}>
+      {icon}
+    </div>
+    <div className="min-w-0">
+      <p className="text-xs text-gray-500 uppercase tracking-wide font-bold">{label}</p>
+      <p className="text-gray-200 font-medium truncate text-sm">{value}</p>
+    </div>
+  </div>
+);
+
+const VerificationItem = ({ label }) => (
+  <div className="flex items-center gap-3">
+    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center text-black text-xs font-bold shadow-lg shadow-green-500/50">
+      ✓
+    </div>
+    <span className="text-gray-300 text-sm font-medium">{label}</span>
+  </div>
+);
+
+const ActivityItem = ({ label, value }) => (
+  <div className="flex justify-between items-center border-b border-white/5 pb-2 last:border-0 last:pb-0">
+    <span className="text-gray-500">{label}</span>
+    <span className="text-gray-300 font-medium">{value}</span>
+  </div>
+);
+
+const ActionButton = ({ label, bg, hover, text, border, shadow = "" }) => (
+  <button className={`${bg} ${hover} ${text} ${border} ${shadow} font-bold py-3.5 px-6 rounded-xl transition-all duration-300 border backdrop-blur-sm`}>
+    {label}
+  </button>
+);
 
 export default Profile;

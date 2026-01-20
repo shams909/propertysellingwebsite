@@ -49,17 +49,21 @@ const agents = [
 const OurAgent = () => {
   return (
     <div className="container mx-auto py-12 relative px-4">
-      <Title
-        title="Our Agents"
-        description="Meet our experienced and professional real estate agents"
-      />
+      <div className="text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          Our <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600">Agents</span>
+        </h2>
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          Meet our experienced and professional real estate agents
+        </p>
+      </div>
 
       {/* Custom Navigation Buttons */}
       <div className="absolute top-12 right-5 sm:right-10 z-10 flex gap-3">
-        <div className="custom-agent-prev cursor-pointer bg-[#FFEEEC] text-orange-500 shadow-md p-3 rounded-md">
+        <div className="custom-agent-prev cursor-pointer bg-white/5 hover:bg-orange-500 text-white shadow-lg p-3 rounded-xl border border-white/10 backdrop-blur-md transition-all active:scale-95">
           <FaArrowLeft />
         </div>
-        <div className="custom-agent-next cursor-pointer bg-[#FFEEEC] text-orange-500 shadow-md p-3 rounded-md">
+        <div className="custom-agent-next cursor-pointer bg-white/5 hover:bg-orange-500 text-white shadow-lg p-3 rounded-xl border border-white/10 backdrop-blur-md transition-all active:scale-95">
           <FaArrowRight />
         </div>
       </div>

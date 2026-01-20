@@ -14,27 +14,27 @@ const OurAgentCard = ({ agent }) => {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center px-4">
-        <div className="bg-white w-full p-6 rounded-lg text-center space-y-3">
-          <div className="flex justify-center gap-3">
-            <h1 className="text-lg font-bold text-red-500">{name}</h1>
-            <div className="bg-[#FEF0F1] text-red-500 rounded-full p-2">
-              <FaHeart size={16} />
+      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center px-4 backdrop-blur-sm">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/10 w-full p-6 rounded-2xl text-center space-y-3 shadow-2xl">
+          <div className="flex justify-center gap-3 items-center">
+            <h1 className="text-xl font-bold text-white">{name}</h1>
+            <div className="bg-white/10 text-orange-500 rounded-full p-2 border border-white/5">
+              <FaHeart size={14} />
             </div>
           </div>
 
-          <p className="text-gray-700 text-sm font-semibold">{description}</p>
-          <p className="text-gray-500 text-sm">{email}</p>
+          <p className="text-gray-300 text-sm font-medium leading-relaxed">{description}</p>
+          <p className="text-gray-400 text-xs">{email}</p>
 
-          <div className="flex justify-center gap-4 mt-3">
-            <div className="bg-[#FEF0F1] text-red-500 p-2 rounded-full">
-              <FaFacebook />
+          <div className="flex justify-center gap-4 mt-4">
+            <div className="bg-white/5 hover:bg-orange-500 text-white p-2.5 rounded-full transition-all cursor-pointer border border-white/10">
+              <FaFacebook size={14} />
             </div>
-            <div className="bg-[#FEF0F1] text-red-500 p-2 rounded-full">
-              <FaInstagram />
+            <div className="bg-white/5 hover:bg-orange-500 text-white p-2.5 rounded-full transition-all cursor-pointer border border-white/10">
+              <FaInstagram size={14} />
             </div>
-            <div className="bg-[#FEF0F1] text-red-500 p-2 rounded-full">
-              <FaLinkedin />
+            <div className="bg-white/5 hover:bg-orange-500 text-white p-2.5 rounded-full transition-all cursor-pointer border border-white/10">
+              <FaLinkedin size={14} />
             </div>
           </div>
         </div>

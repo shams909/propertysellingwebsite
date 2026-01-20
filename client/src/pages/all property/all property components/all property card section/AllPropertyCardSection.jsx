@@ -12,8 +12,8 @@ const AllPropertyCardSection = ({ properties, filter, setFilter }) => {
   const toggleDrawer = (open) => () => setOpenDrawer(open);
 
   const drawerContent = (
-    <div className="w-80 h-full p-4 bg-white flex flex-col gap-6 overflow-y-auto">
-      <h1 className="text-2xl font-bold mb-2">Advanced Filters</h1>
+    <div className="w-80 h-full p-6 bg-[#0a0a0a] border-r border-white/10 flex flex-col gap-6 overflow-y-auto">
+      <h1 className="text-2xl font-bold mb-2 text-white">Advanced Filters</h1>
       <FilterSection filter={filter} setFilter={setFilter} />
       <CategoryFilterSection filter={filter} setFilter={setFilter} />
       <ContactInfo />
@@ -23,8 +23,8 @@ const AllPropertyCardSection = ({ properties, filter, setFilter }) => {
 
   return (
     <div className="my-5">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Property Listings</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-white">Property Listings</h1>
         {/* Mobile Filter Button */}
         <button
           onClick={toggleDrawer(true)}

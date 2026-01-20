@@ -25,13 +25,13 @@ const PropertyListing = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
 
-  const { data: properties, isLoading } = useProperties(filter);
+  const { data: properties, isLoading, isError, error } = useProperties(filter);
 
   const toggleDrawer = (open) => () => setOpenDrawer(open);
 
   const drawerContent = (
-    <div className=" w-80 h-full p-4 bg-white flex flex-col gap-6 overflow-y-auto">
-      <h1 className="text-2xl font-bold mb-2">Advanced Filters</h1>
+    <div className=" w-80 h-full p-6 bg-[#0a0a0a] border-r border-white/10 flex flex-col gap-6 overflow-y-auto">
+      <h1 className="text-2xl font-bold mb-2 text-white">Advanced Filters</h1>
       <FilterSection filter={filter} setFilter={setFilter} />
       <CategoryFilterSection filter={filter} setFilter={setFilter} />
       <ContactInfo />
@@ -66,7 +66,11 @@ const PropertyListing = () => {
         {/* Property listing section */}
         <div className="col-span-6">
           {isLoading ? (
-            Loading()
+            <Loading />
+          ) : isError ? (
+            <div className="w-full min-h-[50vh] flex items-center justify-center">
+              <p className="text-red-500 font-bold">Error loading properties: {error.message}</p>
+            </div>
           ) : properties?.length === 0 ? (
             <div className="w-full min-h-[50vh] flex items-center justify-center">
               <p className="text-gray-500 text-sm">No properties found</p>

@@ -25,45 +25,45 @@ const FilterSection = ({ filter, setFilter }) => {
   };
 
   return (
-    <div className="mt-3 p-3 bg-white rounded-xl ">
-      <h1 className="text-gray-700 font-bold text-2xl mb-3">Advanced Filter</h1>
-      <div className="w-16 h-1 bg-orange-500 rounded-full mb-6"></div>
+    <div className="mt-3 p-6 bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl shadow-xl">
+      <h1 className="text-white font-bold text-2xl mb-3">Advanced Filter</h1>
+      <div className="w-16 h-1 bg-orange-500 rounded-full mb-8"></div>
 
       <form className="flex flex-col gap-6">
         {/* Property Status & Type */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <select
             onChange={(e) => handleFilterChange("propertyStatus", e.target.value)}
             value={filter.propertyStatus}
-            className="input input-bordered w-full"
+            className="select bg-black/20 border-white/10 text-white w-full h-12 rounded-xl focus:outline-none focus:border-orange-500/50"
           >
-            <option value="">Property Status</option>
-            <option>For Sale</option>
-            <option>For Rent</option>
+            <option value="" className="text-black">Property Status</option>
+            <option className="text-black">For Sale</option>
+            <option className="text-black">For Rent</option>
           </select>
 
           <select
             onChange={(e) => handleFilterChange("propertyType", e.target.value)}
             value={filter.propertyType}
-            className="input input-bordered w-full"
+            className="select bg-black/20 border-white/10 text-white w-full h-12 rounded-xl focus:outline-none focus:border-orange-500/50"
           >
-            <option value="">Property Type</option>
+            <option value="" className="text-black">Property Type</option>
             {types?.map((type, index) => (
-              <option key={index}>{type}</option>
+              <option key={index} className="text-black">{type}</option>
             ))}
           </select>
         </div>
 
         {/* Details Section */}
-        <div className="border-t border-gray-200 pt-4">
-          <h2 className="text-gray-600 font-semibold text-lg mb-3">Details</h2>
-          <div className="flex gap-2 mb-2">
+        <div className="border-t border-white/10 pt-6">
+          <h2 className="text-gray-300 font-semibold text-lg mb-4">Details</h2>
+          <div className="flex gap-3 mb-3">
             <input
               type="number"
               placeholder="Beds"
               value={filter.beds || ""}
               onChange={(e) => handleFilterChange("beds", e.target.value)}
-              className="input input-bordered w-1/2"
+              className="input bg-black/20 border-white/10 text-white w-1/2 h-12 rounded-xl focus:outline-none focus:border-orange-500/50 placeholder-gray-500"
               min={0}
             />
             <input
@@ -71,17 +71,17 @@ const FilterSection = ({ filter, setFilter }) => {
               placeholder="Max Rooms"
               value={filter.maxRooms || ""}
               onChange={(e) => handleFilterChange("maxRooms", e.target.value)}
-              className="input input-bordered w-1/2"
+              className="input bg-black/20 border-white/10 text-white w-1/2 h-12 rounded-xl focus:outline-none focus:border-orange-500/50 placeholder-gray-500"
               min={0}
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <input
               type="number"
               placeholder="Baths"
               value={filter.baths || ""}
               onChange={(e) => handleFilterChange("baths", e.target.value)}
-              className="input input-bordered w-1/2"
+              className="input bg-black/20 border-white/10 text-white w-1/2 h-12 rounded-xl focus:outline-none focus:border-orange-500/50 placeholder-gray-500"
               min={0}
             />
             <input
@@ -89,22 +89,22 @@ const FilterSection = ({ filter, setFilter }) => {
               placeholder="Balcony"
               value={filter.belcony || ""}
               onChange={(e) => handleFilterChange("belcony", e.target.value)}
-              className="input input-bordered w-1/2"
+              className="input bg-black/20 border-white/10 text-white w-1/2 h-12 rounded-xl focus:outline-none focus:border-orange-500/50 placeholder-gray-500"
               min={0}
             />
           </div>
         </div>
 
         {/* Price Section */}
-        <div className="border-t border-gray-200 pt-4">
-          <h2 className="text-gray-600 font-semibold text-lg mb-3">Price</h2>
-          <div className="flex gap-2">
+        <div className="border-t border-white/10 pt-6">
+          <h2 className="text-gray-300 font-semibold text-lg mb-4">Price</h2>
+          <div className="flex gap-3">
             <input
               type="number"
               placeholder="Min Price"
               value={filter.minPrice || ""}
               onChange={(e) => handleFilterChange("minPrice", e.target.value)}
-              className="input input-bordered w-1/2"
+              className="input bg-black/20 border-white/10 text-white w-1/2 h-12 rounded-xl focus:outline-none focus:border-orange-500/50 placeholder-gray-500"
               min={0}
             />
             <input
@@ -112,22 +112,22 @@ const FilterSection = ({ filter, setFilter }) => {
               placeholder="Max Price"
               value={filter.maxPrice || ""}
               onChange={(e) => handleFilterChange("maxPrice", e.target.value)}
-              className="input input-bordered w-1/2"
+              className="input bg-black/20 border-white/10 text-white w-1/2 h-12 rounded-xl focus:outline-none focus:border-orange-500/50 placeholder-gray-500"
               min={0}
             />
           </div>
         </div>
 
         {/* Area Section */}
-        <div className="border-t border-gray-200 pt-4">
-          <h2 className="text-gray-600 font-semibold text-lg mb-3">Area (sq ft)</h2>
-          <div className="flex gap-2">
+        <div className="border-t border-white/10 pt-6">
+          <h2 className="text-gray-300 font-semibold text-lg mb-4">Area (sq ft)</h2>
+          <div className="flex gap-3">
             <input
               type="number"
               placeholder="Min Area"
               value={filter.minArea || ""}
               onChange={(e) => handleFilterChange("minArea", e.target.value)}
-              className="input input-bordered w-1/2"
+              className="input bg-black/20 border-white/10 text-white w-1/2 h-12 rounded-xl focus:outline-none focus:border-orange-500/50 placeholder-gray-500"
               min={0}
             />
             <input
@@ -135,20 +135,20 @@ const FilterSection = ({ filter, setFilter }) => {
               placeholder="Max Area"
               value={filter.maxArea || ""}
               onChange={(e) => handleFilterChange("maxArea", e.target.value)}
-              className="input input-bordered w-1/2"
+              className="input bg-black/20 border-white/10 text-white w-1/2 h-12 rounded-xl focus:outline-none focus:border-orange-500/50 placeholder-gray-500"
               min={0}
             />
           </div>
         </div>
 
         {/* Reset Button */}
-        <div className="border-t border-gray-200 pt-4 flex justify-end">
+        <div className="border-t border-white/10 pt-6 flex justify-end">
           <button
             type="button"
             onClick={handleReset}
-            className="flex w-full btn items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg font-medium hover:bg-white hover:text-orange-600 border border-orange-600 transition-all"
+            className="flex w-full btn items-center justify-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-700 hover:shadow-lg hover:shadow-orange-500/20 border-none transition-all"
           >
-            <RiResetLeftFill />
+            <RiResetLeftFill size={18} />
             Reset Filters
           </button>
         </div>
