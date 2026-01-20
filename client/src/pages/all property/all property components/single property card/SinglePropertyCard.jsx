@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { CiCamera, CiHeart } from "react-icons/ci";
-import { IoIosGitCompare } from "react-icons/io";
 import { format } from "date-fns";
 import { IoBedOutline } from "react-icons/io5";
 import { LiaBathSolid } from "react-icons/lia";
@@ -90,7 +89,7 @@ const SinglePropertyCard = ({ property }) => {
   return (
     <div className="card bg-white/5 border border-white/10 shadow-xl group hover:shadow-orange-500/10 transition-all duration-300 backdrop-blur-md rounded-2xl overflow-hidden h-full flex flex-col justify-between">
       <figure className="relative h-64 overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none" />
         <img src={thumbnail} alt={propertyName} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
 
         {/* Status */}
