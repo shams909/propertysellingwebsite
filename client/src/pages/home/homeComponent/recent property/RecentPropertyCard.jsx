@@ -6,87 +6,68 @@ import { RiLandscapeAiLine } from "react-icons/ri";
 import recent1 from "../../../../assets/recent1.jpg";
 import { Link } from "react-router-dom";
 
-const RecentPropertyCard = ({item}) => {
+const RecentPropertyCard = ({ item }) => {
   return (
-    <div className="card bg-base-100 w-full shadow-md rounded-lg overflow-hidden group">
-      
-      {/* Image + Hover Overlay */}
-      <figure className="relative">
+    <div className="group bg-white/5 border border-white/5 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl hover:shadow-orange-500/10 transition-all duration-300 h-full">
+
+      {/* Image Container */}
+      <div className="relative overflow-hidden h-64">
         <img
           src={item.thumbnail}
           alt="Property"
-          className="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
 
-        {/* Hover Overlay */}
-        <div
-          className="
-            absolute inset-0 flex items-center justify-center 
-            bg-black/40 opacity-0 
-            group-hover:opacity-100 transition-all duration-500
-          "
-        >
-          <div className="bg-white w-[85%] md:w-[75%] px-4 py-3 rounded-md">
-            <p className="text-lg sm:text-xl font-semibold text-gray-700">
-              How much my property worth?
-            </p>
-            <p className="text-sm text-gray-600 font-medium my-2">
-              This home provides huge space to live peacefully with your family
-            </p>
-            <Link to={`all-property/${item._id}`} className="text-base font-semibold text-red-500 flex items-center gap-1 sm:gap-2">
-              View Details 
-              <IoIosArrowRoundForward className="text-2xl" />
-            </Link>
-          </div>
+        {/* Overlay Gradients */}
+        <div className="absolute inset-0 bg-linear-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+
+        {/* Price Badge */}
+        <div className="absolute top-4 left-4 bg-orange-500/90 backdrop-blur-md text-white px-4 py-1.5 rounded-full shadow-lg text-sm font-bold border border-white/10 z-10">
+          ${item.price.toLocaleString()}
         </div>
-      </figure>
+
+        {/* Hover Action Overlay */}
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center p-6">
+          <Link to={`all-property/${item._id}`} className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 bg-white text-black font-bold px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-orange-500 hover:text-white">
+            View Details <IoIosArrowRoundForward className="text-2xl" />
+          </Link>
+        </div>
+      </div>
 
       {/* Card Details */}
-      <div className="card-body px-5 py-10 sm:py-12 space-y-4 relative">
-        
-        {/* Price Badge */}
-        <div className="
-          bg-red-500 px-3 py-1 text-lg sm:text-xl font-semibold text-white 
-          rounded-md absolute -top-4 left-1/2 -translate-x-1/2
-        ">
-          ${item.price}.00
-        </div>
+      <div className="p-6 space-y-6">
 
-        {/* Top Row */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-gray-700">
-            <div className="bg-[#FDEEEC] text-orange-500 rounded-full p-2">
-              <IoHomeOutline size={18} />
-            </div>
-            <p className="text-xs sm:text-sm font-medium">{item.propertyType}</p>
+        <div className="flex justify-between items-start">
+          <div>
+            <h3 className="text-xl font-bold text-white mb-1 line-clamp-1 group-hover:text-orange-400 transition-colors">{item.propertyName}</h3>
+            <p className="text-gray-400 text-sm">{item.propertyType}</p>
           </div>
-
-          <div className="w-px h-6 bg-gray-300"></div>
-
-          <div className="flex items-center gap-2 text-gray-700">
-            <div className="bg-[#FDEEEC] text-orange-500 rounded-full p-2">
-              <RiLandscapeAiLine size={18} />
-            </div>
-            <p className="text-xs sm:text-sm font-medium">{item.details.area} sq ft</p>
+          <div className="bg-white/5 p-2 rounded-lg border border-white/5">
+            <IoHomeOutline className="text-orange-500 text-xl" />
           </div>
         </div>
 
-        {/* Bottom Row */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-gray-700">
-            <div className="bg-[#FDEEEC] text-orange-500 rounded-full p-2">
-              <MdOutlineBed size={18} />
-            </div>
-            <p className="text-xs sm:text-sm font-medium">{item.details.beds} bedrooms</p>
+        {/* Divider */}
+        <div className="h-px w-full bg-white/10" />
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="flex flex-col items-center gap-1 text-center">
+            <MdOutlineBed className="text-orange-400 text-xl mb-1" />
+            <span className="text-white font-bold text-sm">{item.details.beds}</span>
+            <span className="text-xs text-gray-500">Beds</span>
           </div>
 
-          <div className="w-px h-6 bg-gray-300"></div>
+          <div className="flex flex-col items-center gap-1 text-center border-x border-white/5 px-4">
+            <MdOutlineBathroom className="text-orange-400 text-xl mb-1" />
+            <span className="text-white font-bold text-sm">{item.details.baths}</span>
+            <span className="text-xs text-gray-500">Baths</span>
+          </div>
 
-          <div className="flex items-center gap-2 text-gray-700">
-            <div className="bg-[#FDEEEC] text-orange-500 rounded-full p-2">
-              <MdOutlineBathroom size={18} />
-            </div>
-            <p className="text-xs sm:text-sm font-medium">{item.details.baths} bathrooms</p>
+          <div className="flex flex-col items-center gap-1 text-center">
+            <RiLandscapeAiLine className="text-orange-400 text-xl mb-1" />
+            <span className="text-white font-bold text-sm">{item.details.area}</span>
+            <span className="text-xs text-gray-500">Sqft</span>
           </div>
         </div>
 
