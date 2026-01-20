@@ -64,6 +64,8 @@ const SinglePropertyCard = ({ property }) => {
           propertyName,
           price,
           thumbnail,
+          propertyStatus, // Send status
+          details, // Send details object
           email: user.email,
         });
 
@@ -89,7 +91,7 @@ const SinglePropertyCard = ({ property }) => {
   return (
     <div className="card bg-white/5 border border-white/10 shadow-xl group hover:shadow-orange-500/10 transition-all duration-300 backdrop-blur-md rounded-2xl overflow-hidden h-full flex flex-col justify-between">
       <figure className="relative h-64 overflow-hidden">
-        <div className="absolute inset-0 bg-linear-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none" />
         <img src={thumbnail} alt={propertyName} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
 
         {/* Status */}

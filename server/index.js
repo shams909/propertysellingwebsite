@@ -776,7 +776,7 @@ app.patch('/properties/status/:id', verifyToken, async (req, res) => {
 // ------------- favourites API's  ------------------
 app.post("/favourites", verifyToken, async (req, res) => {
   try {
-    const { propertyId, email, propertyName, price, thumbnail } = req.body;
+    const { propertyId, email, propertyName, price, thumbnail, propertyStatus, details } = req.body;
 
     const exists = await favouritesCollection.findOne({ propertyId, email });
     if (exists) {
@@ -789,6 +789,8 @@ app.post("/favourites", verifyToken, async (req, res) => {
       propertyName,
       price,
       thumbnail,
+      propertyStatus, // Save status
+      details, // Save details object (beds, baths, area)
       createdAt: new Date(),
     });
 

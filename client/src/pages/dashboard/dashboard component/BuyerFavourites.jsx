@@ -168,17 +168,17 @@ const BuyerFavourites = () => {
               <div className="grid grid-cols-3 gap-2 mb-6">
                 <div className="bg-white/5 rounded-xl p-3 flex flex-col items-center justify-center border border-white/5 hover:border-orange-500/30 transition-colors">
                   <FaBed className="text-orange-500 text-lg mb-1" />
-                  <span className="text-sm font-bold text-white">{property.details?.bedrooms || 0}</span>
+                  <span className="text-sm font-bold text-white">{property.details?.beds || 0}</span>
                   <span className="text-[10px] text-gray-500 uppercase font-semibold">Beds</span>
                 </div>
                 <div className="bg-white/5 rounded-xl p-3 flex flex-col items-center justify-center border border-white/5 hover:border-orange-500/30 transition-colors">
                   <FaBath className="text-orange-500 text-lg mb-1" />
-                  <span className="text-sm font-bold text-white">{property.details?.bathrooms || 0}</span>
+                  <span className="text-sm font-bold text-white">{property.details?.baths || 0}</span>
                   <span className="text-[10px] text-gray-500 uppercase font-semibold">Baths</span>
                 </div>
                 <div className="bg-white/5 rounded-xl p-3 flex flex-col items-center justify-center border border-white/5 hover:border-orange-500/30 transition-colors">
                   <FaRulerCombined className="text-orange-500 text-lg mb-1" />
-                  <span className="text-sm font-bold text-white">{property.details?.squareFeet || 0}</span>
+                  <span className="text-sm font-bold text-white">{property.details?.area || 0}</span>
                   <span className="text-[10px] text-gray-500 uppercase font-semibold">Sqft</span>
                 </div>
               </div>
