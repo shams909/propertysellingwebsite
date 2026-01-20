@@ -9,20 +9,13 @@ const DashboardLayout = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="min-h-screen">
-      
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-orange-500 selection:text-white flex flex-col md:flex-row">
+      {/* Sidebar */}
+      <DashboardSidebar />
 
-      {/* Main Layout */}
-      <div className="grid grid-cols-12">
-        {/* Sidebar */}
-        <div className="col-span-12 lg:col-span-2 bg-amber-200">
-          <DashboardSidebar />
-        </div>
-
-        {/* Page Content */}
-        <div className="np col-span-12 lg:col-span-10  min-h-[calc(100vh-64px)] bg-orange-100">
-          <Outlet />
-        </div>
+      {/* Page Content */}
+      <div className="flex-1 w-full min-w-0">
+        <Outlet />
       </div>
     </div>
   );

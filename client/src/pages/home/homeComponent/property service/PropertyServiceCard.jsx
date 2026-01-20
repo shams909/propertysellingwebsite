@@ -3,32 +3,29 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 
 const PropertyServiceCard = ({ image, serviceName, serviceDetails }) => {
   return (
-    <div className="relative my-16 mx-4 sm:mx-6 lg:mx-8">
-      {/* Icon Image */}
-      <img
-        className="
-          w-16 sm:w-20
-          p-4 rounded-md bg-red-400
-          absolute -top-8 sm:-top-10
-          left-4 sm:left-6 lg:-left-6
-        "
-        src={image}
-        alt=""
-      />
+    <div className="relative group mx-2 my-8 h-full">
+      <div className="bg-white/5 border border-white/5 backdrop-blur-xl rounded-3xl p-8 h-[320px] shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center">
 
-      {/* Card */}
-      <div className="bg-gray-50 rounded-md p-5 sm:p-6 lg:p-8 shadow-sm">
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-700 mt-8 sm:mt-10">
+        {/* Floating Icon Container */}
+        <div className="w-20 h-20 bg-[#050505] rounded-2xl border border-white/10 flex items-center justify-center -mt-16 mb-6 shadow-xl shadow-black/50 group-hover:border-orange-500/30 transition-colors">
+          <img
+            className="w-10 h-10 object-contain brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all duration-300"
+            src={image}
+            alt={serviceName}
+          />
+        </div>
+
+        <h1 className="text-2xl font-bold text-white mb-4 group-hover:text-orange-400 transition-colors">
           {serviceName}
         </h1>
 
-        <p className="text-base sm:text-lg text-gray-600 my-4 sm:my-5 leading-relaxed">
+        <p className="text-gray-400 leading-relaxed mb-6 line-clamp-3">
           {serviceDetails}
         </p>
 
-        <button className="text-base sm:text-lg font-semibold text-red-500 flex items-center gap-2">
+        <button className="mt-auto text-orange-500 font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
           View Details
-          <IoIosArrowRoundForward className="text-2xl mt-1" />
+          <IoIosArrowRoundForward className="text-2xl" />
         </button>
       </div>
     </div>

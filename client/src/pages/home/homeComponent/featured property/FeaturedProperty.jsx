@@ -11,40 +11,23 @@ const FeaturedProperty = () => {
   const { data: featuredProperty } = useProperties(filter);
 
   return (
-    <div className="relative w-full py-20 sm:py-28 bg-white flex items-center my-8">
-      {/* Gray side background */}
-      <div
-        className="
-        absolute top-0 left-0 
-        hidden sm:block 
-        sm:w-1/3 
-        lg:w-[35%] 
-        
-        h-full bg-gray-200
-      "
-      ></div>
+    <div className="relative w-full py-20 bg-[#050505]">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2" />
 
       {/* Custom Navigation Buttons */}
-      <div
-        className="
-          absolute 
-          z-10 flex gap-3
-          right-4 top-4
-          sm:right-10 sm:top-20 
-           md:top-5
-        "
-      >
-        <div className="custom-prev cursor-pointer bg-[#FFEEEC] text-orange-500 shadow p-2 sm:p-3 rounded-md active:scale-90 transition">
+      <div className="container mx-auto px-4 mb-8 flex justify-end gap-3 relative z-10">
+        <div className="custom-prev cursor-pointer bg-white/5 hover:bg-orange-500 text-white border border-white/10 p-3 rounded-xl transition-all active:scale-95 backdrop-blur-md">
           <FaArrowLeft />
         </div>
-        <div className="custom-next cursor-pointer bg-[#FFEEEC] text-orange-500 shadow p-2 sm:p-3 rounded-md active:scale-90 transition">
+        <div className="custom-next cursor-pointer bg-white/5 hover:bg-orange-500 text-white border border-white/10 p-3 rounded-xl transition-all active:scale-95 backdrop-blur-md">
           <FaArrowRight />
         </div>
       </div>
 
       <Swiper
         loop={true}
-        spaceBetween={20}
+        spaceBetween={24}
         keyboard={{ enabled: true }}
         navigation={{
           prevEl: ".custom-prev",
@@ -52,11 +35,11 @@ const FeaturedProperty = () => {
         }}
         modules={[Keyboard, Navigation]}
         breakpoints={{
-          0: { slidesPerView: 1 }, // Mobile
-          640: { slidesPerView: 1 }, // Small tablet
-          768: { slidesPerView: 1 }, // Tablet
-          1024: { slidesPerView: 1 }, // Laptop
-          1280: { slidesPerView: 1 }, // Desktop
+          0: { slidesPerView: 1 },
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 1 },
+          1024: { slidesPerView: 1 },
+          1280: { slidesPerView: 1 },
         }}
         className="mySwiper container mx-auto px-4"
       >

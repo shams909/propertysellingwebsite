@@ -54,66 +54,73 @@ const DashboardSidebar = () => {
   };
 
   const linkBase =
-    "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300";
+    "flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 mx-2 mb-1";
 
-  const activeLink = "bg-white text-orange-600 font-semibold shadow-md";
+  const activeLink =
+    "bg-gradient-to-r from-orange-500/20 to-orange-500/5 text-orange-400 font-semibold border border-orange-500/20 shadow-[0_0_20px_rgba(249,115,22,0.1)]";
 
-  const normalLink = "text-white hover:bg-orange-400";
+  const normalLink =
+    "text-gray-400 hover:text-white hover:bg-white/5 hover:translate-x-1";
 
   const navClass = ({ isActive }) =>
     `${linkBase} ${isActive ? activeLink : normalLink}`;
+
+  const SectionLabel = ({ label }) => (
+    <p className="px-6 py-2 text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 mt-4 mb-1">
+      {label}
+    </p>
+  );
 
   return (
     <>
       {/* Mobile Hamburger Button */}
       <button
         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-        className="md:hidden fixed top-4 right-4 z-50 bg-orange-600 text-white p-3 rounded-lg shadow-lg hover:bg-orange-700 transition"
-        title="Toggle Menu"
+        className="md:hidden fixed top-4 right-4 z-50 bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/10 text-white p-3 rounded-2xl shadow-2xl transition active:scale-95"
       >
-        {isDrawerOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        {isDrawerOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
       </button>
 
       {/* Mobile Drawer Overlay */}
-      {isDrawerOpen && (
-        <div
-          onClick={() => setIsDrawerOpen(false)}
-          className="md:hidden fixed inset-0 bg-black/50 z-40 transition-opacity"
-        ></div>
-      )}
+      <div
+        onClick={() => setIsDrawerOpen(false)}
+        className={`md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-500 ${isDrawerOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
+      ></div>
 
-      {/* Sidebar - Desktop and Mobile Drawer */}
+      {/* Sidebar Container */}
       <aside
-        className={` sticky top-0 bg-linear-to-b from-orange-500 to-orange-700 text-white flex flex-col transition-all duration-300 z-40 ${
-          isDrawerOpen
-            ? "fixed left-0 top-0 w-64 overflow-y-auto"
-            : "hidden md:flex md:w-64"
-        }`}
+        className={`sticky top-0 h-screen bg-[#0f0f0f]/60 backdrop-blur-2xl border-r border-white/5 text-white flex flex-col transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-40 ${isDrawerOpen
+            ? "fixed left-0 top-0 w-72 translate-x-0 shadow-2xl shadow-black/50"
+            : "hidden md:flex md:w-72"
+          }`}
       >
-        {/* Logo */}
-        <div className="px-6 py-5 text-2xl bg-white flex justify-center items-center font-bold border-b border-orange-400">
-          <img src={logo} alt="Logo" />
+        {/* Logo Section */}
+        <div className="p-6 flex justify-center items-center">
+          <div className="bg-white/5 p-4 rounded-3xl border border-white/5 w-full flex justify-center backdrop-blur-md">
+            <img src={logo} alt="Logo" className="h-8 object-contain" />
+          </div>
         </div>
 
-        {/* ================= Dashboard ================= */}
-        <nav className="px-4 py-6 space-y-2 border-b border-orange-400">
-          <p className="px-4 text-xs uppercase tracking-wide opacity-80">
-            Dashboard
-          </p>
-          {/* Common */}
+        {/* Scrollable Nav Content */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar pb-6 space-y-1">
+
+          {/* Dashboard Section */}
+          <SectionLabel label="Menu" />
+
           {(role === "buyer" || role === "seller") && (
-            <>
-              <NavLink
-                to="/dashboard"
-                end
-                onClick={() => setIsDrawerOpen(false)}
-                className={navClass}
-              >
-                <FaHome /> Dashboard
-              </NavLink>
-            </>
+            <NavLink
+              to="/dashboard"
+              end
+              onClick={() => setIsDrawerOpen(false)}
+              className={navClass}
+            >
+              <FaHome className={({ isActive }) => (isActive ? "text-orange-400" : "")} />
+              <span>Dashboard</span>
+            </NavLink>
           )}
-          {/* Buyer */}
+
+          {/* Buyer Routes */}
           {role === "buyer" && (
             <>
               <NavLink
@@ -121,7 +128,7 @@ const DashboardSidebar = () => {
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaHeart /> Favourites
+                <FaHeart /> <span>Favourites</span>
               </NavLink>
 
               <NavLink
@@ -129,12 +136,12 @@ const DashboardSidebar = () => {
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaCalendarCheck />
-                My Appointments
+                <FaCalendarCheck /> <span>My Appointments</span>
               </NavLink>
             </>
           )}
-          {/* Seller */}
+
+          {/* Seller Routes */}
           {role === "seller" && (
             <>
               <NavLink
@@ -142,7 +149,7 @@ const DashboardSidebar = () => {
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaPlusCircle /> Add Property
+                <FaPlusCircle /> <span>Add Property</span>
               </NavLink>
 
               <NavLink
@@ -150,7 +157,7 @@ const DashboardSidebar = () => {
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaBuilding /> Manage Properties
+                <FaBuilding /> <span>Manage Properties</span>
               </NavLink>
 
               <NavLink
@@ -158,11 +165,12 @@ const DashboardSidebar = () => {
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaCalendarCheck /> Appointments Request
+                <FaCalendarCheck /> <span>Requests</span>
               </NavLink>
             </>
           )}
-          {/* Admin */}
+
+          {/* Admin Routes */}
           {role === "admin" && (
             <>
               <NavLink
@@ -170,7 +178,7 @@ const DashboardSidebar = () => {
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaUsers /> Manage Users
+                <FaUsers /> <span>Manage Users</span>
               </NavLink>
 
               <NavLink
@@ -178,7 +186,7 @@ const DashboardSidebar = () => {
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaBuilding /> Manage Properties
+                <FaBuilding /> <span>Manage Properties</span>
               </NavLink>
 
               <NavLink
@@ -186,81 +194,62 @@ const DashboardSidebar = () => {
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaClipboardList /> Property Requests
+                <FaClipboardList /> <span>Property Requests</span>
               </NavLink>
+
               <NavLink
                 to="/dashboard/manage-agencies"
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaBuilding /> Manage Agencies
+                <FaBuilding /> <span>Manage Agencies</span>
               </NavLink>
+
               <NavLink
                 to="/dashboard/seller/add-property"
                 onClick={() => setIsDrawerOpen(false)}
                 className={navClass}
               >
-                <FaPlusCircle /> Add Property
+                <FaPlusCircle /> <span>Add Property</span>
               </NavLink>
             </>
           )}
-        </nav>
 
-        {/* ================= Website ================= */}
-        <nav className="flex-1 px-4 py-6 space-y-2">
-          <p className="px-4 text-xs uppercase tracking-wide opacity-80">
-            Website
-          </p>
+          {/* Website Section */}
+          <div className="my-4 border-t border-white/5 mx-6"></div>
+          <SectionLabel label="Website" />
 
-          <NavLink
-            to="/"
-            onClick={() => setIsDrawerOpen(false)}
-            className={navClass}
-          >
-            <FaGlobe /> Home
+          <NavLink to="/" onClick={() => setIsDrawerOpen(false)} className={navClass}>
+            <FaGlobe /> <span>Home</span>
           </NavLink>
 
-          <NavLink
-            to="/all-property"
-            onClick={() => setIsDrawerOpen(false)}
-            className={navClass}
-          >
-            <FaBuilding /> Property
+          <NavLink to="/all-property" onClick={() => setIsDrawerOpen(false)} className={navClass}>
+            <FaBuilding /> <span>Properties</span>
           </NavLink>
 
-          <NavLink
-            to="/all-agency"
-            onClick={() => setIsDrawerOpen(false)}
-            className={navClass}
-          >
-            <FaUsers /> Agency
+          <NavLink to="/all-agency" onClick={() => setIsDrawerOpen(false)} className={navClass}>
+            <FaUsers /> <span>Agencies</span>
           </NavLink>
 
-          <NavLink
-            to="/blog"
-            onClick={() => setIsDrawerOpen(false)}
-            className={navClass}
-          >
-            <FaBlog /> Blog
+          <NavLink to="/blog" onClick={() => setIsDrawerOpen(false)} className={navClass}>
+            <FaBlog /> <span>Blog</span>
           </NavLink>
 
-          <NavLink
-            to="/contact"
-            onClick={() => setIsDrawerOpen(false)}
-            className={navClass}
-          >
-            <FaEnvelope /> Contact
+          <NavLink to="/contact" onClick={() => setIsDrawerOpen(false)} className={navClass}>
+            <FaEnvelope /> <span>Contact</span>
           </NavLink>
-        </nav>
+        </div>
 
-        {/* ================= Bottom ================= */}
-        <div className="border-t border-orange-400 px-4 py-4 space-y-2">
+        {/* User Profile / Bottom Section */}
+        <div className="p-4 bg-black/20 backdrop-blur-md border-t border-white/5">
+          <SectionLabel label="Account" />
+
           <NavLink
             to="/profile"
             onClick={() => setIsDrawerOpen(false)}
             className={navClass}
           >
-            <FaUserCircle /> Profile
+            <FaUserCircle /> <span>Profile</span>
           </NavLink>
 
           <NavLink
@@ -268,14 +257,15 @@ const DashboardSidebar = () => {
             onClick={() => setIsDrawerOpen(false)}
             className={navClass}
           >
-            <FaCog /> Settings
+            <FaCog /> <span>Settings</span>
           </NavLink>
 
           <button
             onClick={handleLogout}
-            className={`${linkBase} hover:bg-red-500 w-full`}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 mx-0 mt-2 text-red-400 hover:bg-red-500/10 hover:text-red-300 group"
           >
-            <FaSignOutAlt /> Logout
+            <FaSignOutAlt className="group-hover:-translate-x-1 transition-transform" />
+            <span className="font-medium">Logout</span>
           </button>
         </div>
       </aside>
