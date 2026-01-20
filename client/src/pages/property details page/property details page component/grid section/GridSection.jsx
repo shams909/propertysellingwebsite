@@ -10,26 +10,26 @@ import RelatedPropertySection from "../related property section/RelatedPropertyS
 
 const GridSection = ({ property }) => {
   return (
-   <div className="container mx-auto py-8">
-  <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
-    
-    {/* Left Side */}
-    <div className="col-span-1 lg:col-span-5 space-y-8">
-      <TabSection />
-      <ReviewSection property={property} />
-      <RelatedPropertySection property={property}/>
-      <div className="h-10"></div> {/* Extra space to allow scroll */}
-    </div>
+    <div className="container mx-auto py-8 text-white">
+      <div className="grid grid-cols-1 lg:grid-cols-7 gap-8">
 
-    {/* Right Side */}
-    <div className="col-span-1 lg:col-span-2">
-      <div className="sticky top-18">
-        <SendRequestSection />
+        {/* Left Side */}
+        <div className="col-span-1 lg:col-span-5 space-y-10">
+          <TabSection />
+          <ReviewSection property={property} />
+          <RelatedPropertySection property={property} />
+          <div className="h-10"></div> {/* Extra space to allow scroll */}
+        </div>
+
+        {/* Right Side */}
+        <div className="col-span-1 lg:col-span-2">
+          <div className="sticky top-24">
+            <SendRequestSection />
+          </div>
+        </div>
+
       </div>
     </div>
-
-  </div>
-</div>
 
   );
 };

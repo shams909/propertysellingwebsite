@@ -17,7 +17,7 @@ const ImageSlider = ({ property }) => {
 
   return (
     // Outer container: Full width, no padding at top/sides
-    <header className="w-full overflow-hidden shadow-lg">
+    <header className="w-full overflow-hidden shadow-2xl rounded-b-3xl relative z-20">
       <LightGallery
         speed={500}
         plugins={[lgThumbnail, lgZoom]}
@@ -28,17 +28,18 @@ const ImageSlider = ({ property }) => {
         showCloseIcon={true}
         backdropDuration={300}
         // This class targets the inner container of the items
-        elementClassNames="flex flex-row w-full h-[200px] md:h-[300px]"
+        elementClassNames="flex flex-row w-full h-[300px] md:h-[500px] bg-[#050505]"
       >
         {images.map((src, i) => (
           <a
             href={src}
             key={i}
-            className="flex-1 overflow-hidden group border-r border-white/10 last:border-0"
+            className="flex-1 overflow-hidden group border-r border-[#050505]/50 last:border-0 relative"
           >
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
             <img
               src={src}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
               alt={`Banner slide ${i + 1}`}
             />
           </a>

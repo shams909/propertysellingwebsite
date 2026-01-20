@@ -78,7 +78,7 @@ const SinglePropertyCard = ({ property }) => {
         toast.success("Removed from favourite");
       }
 
-      refetch(); 
+      refetch();
     } catch (error) {
       console.error("Favourite error:", error);
       toast.error("Something went wrong");
@@ -88,87 +88,84 @@ const SinglePropertyCard = ({ property }) => {
   };
 
   return (
-    <div className="card bg-base-100 shadow-sm group">
-      <figure>
-        <div className="relative">
-          <img src={thumbnail} alt={propertyName} />
+    <div className="card bg-white/5 border border-white/10 shadow-xl group hover:shadow-orange-500/10 transition-all duration-300 backdrop-blur-md rounded-2xl overflow-hidden h-full flex flex-col justify-between">
+      <figure className="relative h-64 overflow-hidden">
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent z-10 pointer-events-none" />
+        <img src={thumbnail} alt={propertyName} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
 
-          {/* Status */}
-          <div className="absolute top-3 left-3 bg-red-600 px-4 text-xs py-1 text-white font-semibold rounded-lg">
+        {/* Status */}
+        <div className="absolute top-4 left-4 z-20">
+          <span className="bg-orange-500/90 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider backdrop-blur-md shadow-lg">
             {propertyStatus}
-          </div>
-
-          {/* Views */}
-          <div className="absolute top-3 right-3 bg-gray-600 px-4 text-xs py-1 text-white font-semibold rounded-lg flex items-center gap-1">
-            <CiCamera /> {views}
-          </div>
-
-
-          {/* Favourite */}
-          <button
-            onClick={handleFavourite}
-            disabled={loading}
-            className={`absolute bottom-3 right-3 p-2 rounded-lg text-xl
-              transition-all duration-300
-              ${
-                isFav
-                  ? "bg-red-500 text-white"
-                  : "bg-white text-black"
-              }
-              ${loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
-            `}
-          >
-            {isFav ? <FaHeart /> : <CiHeart />}
-          </button>
+          </span>
         </div>
+
+        {/* Views */}
+        <div className="absolute top-4 right-4 z-20 bg-black/40 text-white px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-md border border-white/10 flex items-center gap-1.5">
+          <CiCamera className="text-lg" /> {views}
+        </div>
+
+        {/* Favourite */}
+        <button
+          onClick={handleFavourite}
+          disabled={loading}
+          className={`absolute bottom-4 right-4 z-20 p-2.5 rounded-full text-lg transition-all duration-300 shadow-lg active:scale-95
+            ${isFav ? "bg-red-500 text-white" : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/20"}
+          `}
+        >
+          {isFav ? <FaHeart /> : <CiHeart />}
+        </button>
       </figure>
 
-      <div className="card-body justify-between">
-        <div className="space-y-2">
-          <Link
-            to={`/all-property/${_id}`}
-            className="text-2xl font-bold group-hover:text-orange-500 transition-all duration-300"
-          >
-            {propertyName}
-          </Link>
+      <div className="p-6 flex flex-col grow">
+        <div className="space-y-3 grow">
+          <div className="flex justify-between items-start">
+            <Link
+              to={`/all-property/${_id}`}
+              className="text-xl font-bold text-white group-hover:text-orange-500 transition-colors line-clamp-1"
+              title={propertyName}
+            >
+              {propertyName}
+            </Link>
+          </div>
 
-          <p className="text-xl font-semibold text-orange-500">
-            ${price}*
+          <p className="text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-orange-600">
+            ${price.toLocaleString()}
           </p>
 
-          <p className="text-gray-600">
-            {description
-              ? description.slice(0, 100)
-              : "No description available"}
+          <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed h-10">
+            {description ? description : "No description available"}
           </p>
         </div>
 
         {/* Icons */}
-        <div className="flex justify-between mt-4">
-          <div className="flex items-center gap-1 font-semibold text-gray-600">
-            <IoBedOutline />
-            <p>Bed: {details?.beds}</p>
+        <div className="flex justify-between items-center py-4 border-y border-white/5 mt-4 mb-4">
+          <div className="flex items-center gap-2 text-gray-400 text-sm">
+            <IoBedOutline className="text-lg text-orange-500" />
+            <span>{details?.beds} Beds</span>
           </div>
-          <div className="flex items-center gap-1 font-semibold text-gray-600">
-            <LiaBathSolid />
-            <p>Baths: {details?.baths}</p>
+          <div className="flex items-center gap-2 text-gray-400 text-sm">
+            <LiaBathSolid className="text-lg text-orange-500" />
+            <span>{details?.baths} Baths</span>
           </div>
-          <div className="flex items-center gap-1 font-semibold text-gray-600">
-            <GiThermometerScale />
-            <p>Sq Ft: {details?.area}</p>
+          <div className="flex items-center gap-2 text-gray-400 text-sm">
+            <GiThermometerScale className="text-lg text-orange-500" />
+            <span>{details?.area} ft²</span>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex justify-between items-center mt-5">
-          <h1 className="text-gray-600 font-semibold">
-            {formattedDate}
-          </h1>
+        <div className="flex justify-between items-center pt-1">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+            <span className="text-gray-500 text-xs font-medium uppercase tracking-wide">{formattedDate}</span>
+          </div>
+
           <Link
             to={`/all-property/${_id}`}
-            className="btn rounded-full bg-orange-500 hover:bg-white hover:text-black text-white"
+            className="px-5 py-2 rounded-lg bg-white/5 hover:bg-orange-500 text-white text-sm font-semibold transition-all border border-white/10 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20"
           >
-            Details
+            View Details
           </Link>
         </div>
       </div>

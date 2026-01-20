@@ -15,14 +15,14 @@ const PropertyDetailsPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
 
   if (isLoading) {
     return Loading();
   }
 
   return (
-    <div>
+    <div className="bg-[#050505] min-h-screen">
       <ImageSlider property={property}></ImageSlider>
       <div className="px-1 md:px-4">
         <PropertyInfo property={property}></PropertyInfo>

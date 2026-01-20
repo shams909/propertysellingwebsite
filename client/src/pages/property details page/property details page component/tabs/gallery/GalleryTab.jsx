@@ -32,28 +32,28 @@ const GalleryTab = () => {
     );
 
   return (
-    <div className="w-full relative p-4 sm:p-7">
+    <div className="w-full relative py-6">
       {/* Navigation Buttons */}
-      <div className="absolute -bottom-9 right-1/2   transform translate-x-1/2 z-50 flex gap-2 sm:gap-3">
-        <div className="custom-gallery-prev cursor-pointer bg-[#FFEEEC] text-orange-500 shadow-md p-2 sm:p-3 rounded-md hover:bg-orange-100 transition">
+      <div className="absolute -bottom-10 right-1/2 transform translate-x-1/2 z-50 flex gap-3">
+        <div className="custom-gallery-prev cursor-pointer bg-white/5 text-white hover:bg-orange-500 border border-white/10 shadow-lg p-3 rounded-xl backdrop-blur-md transition active:scale-95">
           <FaArrowLeft size={18} />
         </div>
-        <div className="custom-gallery-next cursor-pointer bg-[#FFEEEC] text-orange-500 shadow-md p-2 sm:p-3 rounded-md hover:bg-orange-100 transition">
+        <div className="custom-gallery-next cursor-pointer bg-white/5 text-white hover:bg-orange-500 border border-white/10 shadow-lg p-3 rounded-xl backdrop-blur-md transition active:scale-95">
           <FaArrowRight size={18} />
         </div>
       </div>
 
       {/* Title */}
-      <div className="mb-6 sm:mb-10">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-          Gallery & <span className="text-orange-600">Property Photos</span>
+      <div className="mb-8 text-center md:text-left">
+        <h2 className="text-2xl font-bold text-white mb-2">
+          Gallery & <span className="text-orange-500">Property Photos</span>
         </h2>
-        <p className="text-gray-600 text-sm sm:text-base">
+        <p className="text-gray-400 text-sm">
           Everything you need for comfort and security.
         </p>
       </div>
 
-      <div className="max-w-5xl mx-auto mt-4 sm:mt-6">
+      <div className="max-w-5xl mx-auto mt-4">
         {/* Main Slider */}
         <Swiper
           style={{
@@ -61,22 +61,25 @@ const GalleryTab = () => {
             "--swiper-pagination-color": "#fff",
           }}
           loop={true}
-          spaceBetween={10}
+          spaceBetween={16}
           navigation={{
             prevEl: ".custom-gallery-prev",
             nextEl: ".custom-gallery-next",
           }}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="rounded-xl overflow-hidden shadow-xl mySwiper2"
+          className="rounded-2xl overflow-hidden shadow-2xl mySwiper2 border border-white/10"
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
-              <img
-                src={img}
-                className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px] object-cover rounded-lg"
-                alt="Property"
-              />
+              <div className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent pointer-events-none" />
+                <img
+                  src={img}
+                  className="w-full h-full object-cover"
+                  alt="Property"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -85,7 +88,7 @@ const GalleryTab = () => {
         <Swiper
           onSwiper={setThumbsSwiper}
           loop={true}
-          spaceBetween={8}
+          spaceBetween={12}
           slidesPerView={3}
           breakpoints={{
             640: { slidesPerView: 4 },
@@ -95,15 +98,18 @@ const GalleryTab = () => {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Thumbs]}
-          className="mySwiper mt-3 sm:mt-4"
+          className="mySwiper mt-4"
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
-              <img
-                src={img}
-                className="w-full h-[60px] sm:h-[70px] md:h-20 lg:h-[90px] object-cover rounded-md border border-gray-300 cursor-pointer hover:opacity-80 transition"
-                alt={`thumb-${index}`}
-              />
+              <div className="relative rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:border-orange-500 transition-all duration-300 group">
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
+                <img
+                  src={img}
+                  className="w-full h-[60px] sm:h-[70px] md:h-20 lg:h-[90px] object-cover"
+                  alt={`thumb-${index}`}
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

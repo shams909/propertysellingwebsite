@@ -19,25 +19,27 @@ const TabSection = () => {
   };
 
   return (
-    <div className="py-5 md:shadow-lg rounded-lg bg-white">
+    <div className="py-5 bg-transparent">
       <Box sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={value}>
           <Box
             sx={{
               borderBottom: 1,
-              borderColor: "divider",
+              borderColor: "rgba(255,255,255,0.1)",
               overflowX: "auto",
-              "&::-webkit-scrollbar": { display: "none" }, // hide scrollbar
+              "&::-webkit-scrollbar": { display: "none" },
             }}
           >
             <TabList
               onChange={handleChange}
-              variant="scrollable" // makes tabs scrollable on small screens
+              variant="scrollable"
               scrollButtons="auto"
               aria-label="property tabs"
               sx={{
                 "& .MuiTabs-indicator": {
-                  backgroundColor: "#F54A00", // indicator bar color
+                  backgroundColor: "#F97316", // orange-500
+                  height: 3,
+                  borderRadius: 2
                 },
               }}
             >
@@ -48,13 +50,16 @@ const TabSection = () => {
                     label={label}
                     value={`${index + 1}`}
                     sx={{
-                      color: "#444",
+                      color: "#9CA3AF", // gray-400
                       "&.Mui-selected": {
-                        color: "#F54A00",
+                        color: "#fff",
                         fontWeight: "bold",
+                        textShadow: "0 0 20px rgba(249, 115, 22, 0.5)"
                       },
-                      textTransform: "none", // keep text normal case
-                      minWidth: { xs: 120, sm: 150 }, // min width for scrollable
+                      textTransform: "none",
+                      fontSize: "0.95rem",
+                      minWidth: { xs: 100, sm: 130 },
+                      mr: 1
                     }}
                   />
                 )
@@ -62,22 +67,22 @@ const TabSection = () => {
             </TabList>
           </Box>
 
-          <TabPanel value="1">
+          <TabPanel value="1" sx={{ px: 0, py: 4 }}>
             <AboutTab />
           </TabPanel>
-          <TabPanel value="2">
+          <TabPanel value="2" sx={{ px: 0, py: 4 }}>
             <FeatureTab />
           </TabPanel>
-          <TabPanel value="3">
+          <TabPanel value="3" sx={{ px: 0, py: 4 }}>
             <GalleryTab />
           </TabPanel>
-          <TabPanel value="4">
+          <TabPanel value="4" sx={{ px: 0, py: 4 }}>
             <VideoTab />
           </TabPanel>
-          <TabPanel value="5">
+          <TabPanel value="5" sx={{ px: 0, py: 4 }}>
             <FloorPlan />
           </TabPanel>
-          <TabPanel value="6">
+          <TabPanel value="6" sx={{ px: 0, py: 4 }}>
             <LocationTab />
           </TabPanel>
         </TabContext>

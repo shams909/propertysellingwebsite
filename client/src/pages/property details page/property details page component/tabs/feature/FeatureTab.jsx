@@ -37,15 +37,14 @@ const amenitiesIconMap = {
 const FeatureItem = ({ name, Icon }) => {
   return (
     <div
-      className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 
-                    hover:shadow-lg hover:border-orange-200 transition duration-300 transform hover:-translate-y-0.5"
+      className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/5 
+                    hover:border-orange-500/50 hover:bg-orange-500/10 transition duration-300 transform hover:-translate-y-1 group"
     >
-      {/* Icon is used here — so NO warning */}
-      <div className="w-10 h-10 flex items-center justify-center bg-orange-50 text-orange-600 rounded-full">
+      <div className="w-12 h-12 flex items-center justify-center bg-[#0a0a0a] border border-white/10 text-orange-500 rounded-lg group-hover:text-white group-hover:bg-orange-500 transition-colors">
         {Icon && <Icon className="text-xl" />}
       </div>
 
-      <p className="text-sm font-semibold text-gray-700">{name}</p>
+      <p className="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">{name}</p>
     </div>
   );
 };
@@ -57,37 +56,35 @@ const FeatureTab = () => {
   const { amenities } = property || [];
 
   // Map amenities to icons
-  const amenitiesWithIcons = amenities.map((name) => ({
+  const amenitiesWithIcons = amenities ? amenities.map((name) => ({
     name,
     Icon: amenitiesIconMap[name] || null, // fallback if icon not found
-  }));
+  })) : [];
 
   if (isLoading)
     return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white">
+      <div className="flex items-center justify-center h-40">
         <span className="loading loading-spinner loading-xl text-orange-500"></span>
-        <p className="mt-4 text-sm text-gray-500 tracking-wide">
-          loading data...
-        </p>
       </div>
     );
+
   return (
-    <section className="py-12 md:bg-gray-50">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className=" mb-10">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+    <section className="py-8">
+      <div className="container mx-auto max-w-6xl">
+        <div className=" mb-10 text-center md:text-left">
+          <h2 className="text-2xl font-bold text-white mb-2">
             Amenities &{" "}
-            <span className="text-orange-600">Property Features</span>
+            <span className="text-orange-500">Property Features</span>
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Everything you need for comfort and security.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {amenitiesWithIcons.map((feature) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {amenitiesWithIcons.map((feature, index) => (
             <FeatureItem
-              key={feature.name}
+              key={index}
               name={feature.name}
               Icon={feature.Icon}
             />

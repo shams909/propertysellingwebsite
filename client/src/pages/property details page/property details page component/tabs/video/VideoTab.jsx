@@ -25,13 +25,13 @@ const VideoTab = () => {
     );
 
   return (
-    <div className="w-full py-10 bg-gray-50">
+    <div className="w-full py-8">
       <div className="max-w-6xl mx-auto px-4 space-y-8 relative">
-        <div className=" mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-            Videos & <span className="text-orange-600">Property Tour</span>
+        <div className="mb-8 text-center md:text-left">
+          <h2 className="text-2xl font-bold text-white mb-2">
+            Videos & <span className="text-orange-500">Property Tour</span>
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Everything you need for comfort and security.
           </p>
         </div>
@@ -40,24 +40,25 @@ const VideoTab = () => {
         <Swiper
           modules={[Navigation]}
           spaceBetween={20}
-          slidesPerView={1} // One video per slide
+          slidesPerView={1}
           navigation={{
             prevEl: ".custom-video-prev",
             nextEl: ".custom-video-next",
           }}
           loop={true}
+          className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
         >
           {videos.map((video, index) => (
             <SwiperSlide key={index}>
-              <div className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <div className="w-full h-[400px] md:h-[500px] ">
+              <div className="relative overflow-hidden bg-black">
+                <div className="w-full h-[400px] md:h-[500px]">
                   <iframe
                     src={video}
                     title={`property-video-${index}`}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    className="w-full h-full rounded-xl object-cover"
+                    className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
                   ></iframe>
                 </div>
               </div>
@@ -66,11 +67,11 @@ const VideoTab = () => {
         </Swiper>
 
         {/* Custom Absolute Navigation Buttons */}
-        <div className="absolute -bottom-15 right-1/2 transform translate-x-1/2 z-50 flex gap-3">
-          <div className="custom-video-prev cursor-pointer bg-[#FFEEEC] text-orange-500 shadow-md p-3 rounded-md hover:bg-orange-100 transition">
+        <div className="absolute -bottom-16 right-1/2 transform translate-x-1/2 z-50 flex gap-3">
+          <div className="custom-video-prev cursor-pointer bg-white/5 text-white hover:bg-orange-500 border border-white/10 shadow-lg p-3 rounded-xl backdrop-blur-md transition active:scale-95">
             <FaArrowLeft size={20} />
           </div>
-          <div className="custom-video-next cursor-pointer bg-[#FFEEEC] text-orange-500 shadow-md p-3 rounded-md hover:bg-orange-100 transition">
+          <div className="custom-video-next cursor-pointer bg-white/5 text-white hover:bg-orange-500 border border-white/10 shadow-lg p-3 rounded-xl backdrop-blur-md transition active:scale-95">
             <FaArrowRight size={20} />
           </div>
         </div>

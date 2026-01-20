@@ -28,7 +28,7 @@ const RecentPropertyCard = ({ item }) => {
 
         {/* Hover Action Overlay */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center p-6">
-          <Link to={`all-property/${item._id}`} className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 bg-white text-black font-bold px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-orange-500 hover:text-white">
+          <Link to={`all-property/${item._id}`} className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 bg-black/70 backdrop-blur-md border border-white/20 text-white font-bold px-8 py-3 rounded-full flex items-center gap-2 hover:bg-orange-500 hover:border-orange-500 hover:text-white shadow-lg">
             View Details <IoIosArrowRoundForward className="text-2xl" />
           </Link>
         </div>

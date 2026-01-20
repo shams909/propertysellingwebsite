@@ -4,23 +4,23 @@ import floorplanImg from '../../../../../assets/floorplan.png'; // Replace with 
 
 const FloorPlan = () => {
   return (
-    <div className="w-full py-10 bg-gray-50">
+    <div className="w-full py-8">
       <div className="max-w-5xl mx-auto px-4 space-y-8">
-       <div className=" mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-            FloorPlan & <span className="text-orange-600">Property Plan</span>
+        <div className="mb-8 text-center md:text-left">
+          <h2 className="text-2xl font-bold text-white mb-2">
+            FloorPlan & <span className="text-orange-500">Property Plan</span>
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Everything you need for comfort and security.
           </p>
         </div>
 
         {/* Floor Plan Image */}
-        <div className="relative overflow-hidden rounded-xl hover:shadow-2xl transition-shadow duration-300">
+        <div className="relative overflow-hidden rounded-2xl hover:shadow-orange-500/10 hover:shadow-2xl transition-all duration-300 border border-white/10 bg-white/5 p-2">
           <img
             src={floorplanImg}
             alt="Property Floor Plan"
-            className="w-full h-auto object-cover rounded-xl"
+            className="w-full h-auto object-cover rounded-xl opacity-90 hover:opacity-100 transition-opacity"
           />
         </div>
       </div>

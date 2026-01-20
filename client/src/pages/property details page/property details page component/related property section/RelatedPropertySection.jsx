@@ -24,10 +24,10 @@ const RelatedPropertySection = ({ property }) => {
   return (
     <div className="pb-8 px-2 md:px-0">
       <div className="mb-10">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">
-          Related <span className="text-orange-600">Property</span>
+        <h2 className="text-3xl font-bold text-white mb-2">
+          Related <span className="text-orange-500">Property</span>
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-400">
           Everything you need for comfort and security.
         </p>
       </div>
