@@ -2,21 +2,21 @@ import React from "react";
 import SingleAgencyCard from "../single agency card/SingleAgencyCard";
 import FeaturePropertySidebar from "../feature property sidebar/FeaturePropertySidebar";
 
-const AgencyListing = ({allAgency}) => {
+const AgencyListing = ({ allAgency }) => {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="grid grid-cols-1 lg:grid-cols-8 items-start gap-2">
         {/* Agency listing */}
         <div className="lg:col-span-6">
           <div>
-            <h1 className="font-bold text-3xl">Agency Listing</h1>
-            <p className="text-gray-500">
-              Showing <span className="text-orange-500">{allAgency?.length || 0}</span>{" "}
+            <h1 className="font-bold text-3xl text-white">Agency Listing</h1>
+            <p className="text-gray-400">
+              Showing <span className="text-orange-500 font-bold">{allAgency?.length || 0}</span>{" "}
               {allAgency?.length === 1 ? "Agency" : "Agencies"}
             </p>
           </div>
 
-          <div className="divider mt-5" />
+          <div className="divider mt-5 before:bg-white/10 after:bg-white/10" />
 
           {/* Cards */}
           {allAgency && allAgency.length > 0 ? (

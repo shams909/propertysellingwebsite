@@ -8,3 +8,14 @@ body {
     margin: 0;
     padding: 0;
 }
+
+/* Force dark mode for form controls (iOS-style dropdowns) */
+select,
+input {
+    color-scheme: dark;
+}
+
+select option {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
