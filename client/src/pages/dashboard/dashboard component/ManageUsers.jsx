@@ -17,7 +17,7 @@ const ManageUsers = () => {
   const currentUsers = allUsers.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   useEffect(() => {
-  window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, []);
 
   const handleToggleAdmin = async (id, isCurrentlyAdmin) => {
@@ -106,13 +106,16 @@ const ManageUsers = () => {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">All Users ({allUsers.length})</h2>
+    <div className="p-6 space-y-6">
+      <div>
+        <h2 className="text-3xl font-bold text-white">All Users</h2>
+        <p className="text-gray-500">Showing <span className="text-orange-500 font-bold">{allUsers.length}</span> users</p>
+      </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg shadow">
-        <table className="table table-zebra">
-          <thead className="bg-base-200">
+      <div className="overflow-x-auto bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl">
+        <table className="table">
+          <thead>
             <tr>
               <th>SL</th>
               <th>Photo</th>
@@ -157,9 +160,8 @@ const ManageUsers = () => {
                       <button
                         onClick={() => handleToggleAdmin(user._id, isAdmin)}
                         disabled={adminLoading === user._id}
-                        className={`btn btn-xs ${
-                          isAdmin ? "btn-warning" : "btn-info"
-                        }`}
+                        className={`btn btn-xs ${isAdmin ? "btn-warning" : "btn-info"
+                          }`}
                       >
                         {adminLoading === user._id ? (
                           <span className="loading loading-spinner loading-sm"></span>
@@ -198,9 +200,8 @@ const ManageUsers = () => {
           {[...Array(totalPages).keys()].map((page) => (
             <button
               key={page}
-              className={`join-item btn btn-sm ${
-                currentPage === page + 1 ? "btn-active" : ""
-              }`}
+              className={`join-item btn btn-sm ${currentPage === page + 1 ? "btn-active" : ""
+                }`}
               onClick={() => setCurrentPage(page + 1)}
             >
               {page + 1}

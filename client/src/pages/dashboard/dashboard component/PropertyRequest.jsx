@@ -94,12 +94,13 @@ const PropertyRequest = () => {
   }
 
   return (
-    <div className="p-4 space-y-12">
+    <div className="p-6 space-y-12">
       {/* ================= APPROVED TABLE ================= */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">
-          Approved Properties ({approvedProperties.length})
-        </h2>
+      <div className="space-y-4">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Approved Properties</h2>
+          <p className="text-gray-500">Showing <span className="text-green-400 font-bold">{approvedProperties.length}</span> approved</p>
+        </div>
 
         {approvedProperties.length === 0 ? (
           <p className="text-center text-gray-500">
@@ -107,9 +108,9 @@ const PropertyRequest = () => {
           </p>
         ) : (
           <>
-            <div className="overflow-x-auto rounded-lg shadow">
-              <table className="table table-zebra">
-                <thead className="bg-base-200">
+            <div className="overflow-x-auto bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl">
+              <table className="table">
+                <thead>
                   <tr>
                     <th>SL</th>
                     <th>Photo</th>
@@ -210,9 +211,8 @@ const PropertyRequest = () => {
                 {[...Array(totalPages).keys()].map((page) => (
                   <button
                     key={page}
-                    className={`join-item btn btn-sm ${
-                      currentPage === page + 1 ? "btn-active" : ""
-                    }`}
+                    className={`join-item btn btn-sm ${currentPage === page + 1 ? "btn-active" : ""
+                      }`}
                     onClick={() => setCurrentPage(page + 1)}
                   >
                     {page + 1}
@@ -233,17 +233,18 @@ const PropertyRequest = () => {
       </div>
 
       {/* ================= PENDING TABLE ================= */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">
-          Properties Request ({pendingProperties.length})
-        </h2>
+      <div className="space-y-4">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Properties Request</h2>
+          <p className="text-gray-500">Showing <span className="text-yellow-400 font-bold">{pendingProperties.length}</span> pending</p>
+        </div>
 
         {pendingProperties.length === 0 ? (
           <p className="text-center text-gray-500">No pending properties.</p>
         ) : (
-          <div className="overflow-x-auto rounded-lg shadow">
-            <table className="table table-zebra">
-              <thead className="bg-base-200">
+          <div className="overflow-x-auto bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl">
+            <table className="table">
+              <thead>
                 <tr>
                   <th>SL</th>
                   <th>Photo</th>
@@ -331,17 +332,18 @@ const PropertyRequest = () => {
         )}
       </div>
       {/* ================= REJECTED TABLE ================= */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">
-          Rejected Properties ({rejectedProperties.length})
-        </h2>
+      <div className="space-y-4">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Rejected Properties</h2>
+          <p className="text-gray-500">Showing <span className="text-red-400 font-bold">{rejectedProperties.length}</span> rejected</p>
+        </div>
 
         {rejectedProperties.length === 0 ? (
           <p className="text-center text-gray-500">No pending properties.</p>
         ) : (
-          <div className="overflow-x-auto rounded-lg shadow">
-            <table className="table table-zebra">
-              <thead className="bg-base-200">
+          <div className="overflow-x-auto bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl">
+            <table className="table">
+              <thead>
                 <tr>
                   <th>SL</th>
                   <th>Photo</th>

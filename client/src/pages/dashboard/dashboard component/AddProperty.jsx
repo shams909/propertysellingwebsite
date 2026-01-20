@@ -106,7 +106,7 @@ const AddProperty = () => {
     }
 
     setLoading(true);
-    
+
     // Step 2: Prepare property data (without agency object, only agencyId)
     const propertyData = {
       propertyName: data.propertyName,
@@ -147,7 +147,7 @@ const AddProperty = () => {
       agencyEmail: data.agencyEmail || "",
       agency: data.agency || {},
       isFeatured: data.isFeatured || false,
-      isAdminAproved:  'pending',
+      isAdminAproved: 'pending',
       createdAt: new Date().toISOString(),
     };
 
@@ -213,8 +213,8 @@ const AddProperty = () => {
   };
 
   return (
-    <div className="max-w-6xl my-6 mx-auto p-6 bg-white shadow-lg rounded-lg space-y-6">
-      <h2 className="text-2xl font-bold text-orange-600">Add New Property</h2>
+    <div className="max-w-6xl my-6 mx-auto p-8 bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl space-y-8">
+      <h2 className="text-3xl font-bold text-white">Add New Property</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* ---------------- General Info ---------------- */}
@@ -482,7 +482,7 @@ const AddProperty = () => {
             />
             Mark as Featured
           </label>
-         
+
         </section>
 
         <button
@@ -493,8 +493,8 @@ const AddProperty = () => {
           {loading
             ? "Adding Property..."
             : uploading
-            ? "Uploading Images..."
-            : "Add Property"}
+              ? "Uploading Images..."
+              : "Add Property"}
         </button>
 
         {errors.propertyName && (

@@ -20,9 +20,9 @@ const ManageProperty = () => {
     startIndex + ITEMS_PER_PAGE,
   );
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, [])
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -50,15 +50,16 @@ const ManageProperty = () => {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">
-        All Properties ({allProperties.length})
-      </h2>
+    <div className="p-6 space-y-6">
+      <div>
+        <h2 className="text-3xl font-bold text-white">All Properties</h2>
+        <p className="text-gray-500">Showing <span className="text-orange-500 font-bold">{allProperties.length}</span> properties</p>
+      </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg shadow">
-        <table className="table table-zebra">
-          <thead className="bg-base-200">
+      <div className="overflow-x-auto bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl">
+        <table className="table">
+          <thead>
             <tr>
               <th>SL</th>
               <th>Photo</th>
@@ -159,9 +160,8 @@ const ManageProperty = () => {
           {[...Array(totalPages).keys()].map((page) => (
             <button
               key={page}
-              className={`join-item btn btn-sm ${
-                currentPage === page + 1 ? "btn-active" : ""
-              }`}
+              className={`join-item btn btn-sm ${currentPage === page + 1 ? "btn-active" : ""
+                }`}
               onClick={() => setCurrentPage(page + 1)}
             >
               {page + 1}

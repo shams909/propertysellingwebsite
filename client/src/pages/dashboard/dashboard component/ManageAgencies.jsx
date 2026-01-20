@@ -54,9 +54,9 @@ const AgencyRow = ({ agency, index, onDelete }) => {
 
 const ManageAgencies = () => {
   const { data: agencies = [], refetch, isLoading } = useAgencies();
-useEffect(() => {
-  window.scrollTo(0, 0);
-},[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   const handleDeleteAgency = (agencyId, agencyName) => {
     Swal.fire({
@@ -93,17 +93,18 @@ useEffect(() => {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-6">
-        Manage Agencies ({agencies.length})
-      </h2>
+    <div className="p-6 space-y-6">
+      <div>
+        <h2 className="text-3xl font-bold text-white">Manage Agencies</h2>
+        <p className="text-gray-500">Showing <span className="text-orange-500 font-bold">{agencies.length}</span> agencies</p>
+      </div>
 
       {agencies.length === 0 ? (
         <p className="text-gray-500 text-center py-8">No agencies found</p>
       ) : (
-        <div className="overflow-x-auto rounded-lg shadow">
-          <table className="table table-zebra">
-            <thead className="bg-base-200">
+        <div className="overflow-x-auto bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl">
+          <table className="table">
+            <thead>
               <tr>
                 <th>SL</th>
                 <th>Photo</th>
