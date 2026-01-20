@@ -8,11 +8,8 @@ import {
   FaBed,
   FaBath,
   FaMapMarkerAlt,
-  FaPhone,
-  FaEnvelope,
   FaCalendarAlt,
   FaDoorOpen,
-  FaImages,
 } from "react-icons/fa";
 import { MdBalcony } from "react-icons/md";
 
@@ -40,187 +37,154 @@ const PropertyDetailsModal = ({ id }) => {
     location = {},
   } = property;
 
-  const phone =
-    typeof agent?.phone === "object"
-      ? agent.phone?.$numberLong
-      : agent?.phone;
-
   return (
-    <div className="w-full max-w-7xl mx-auto bg-black/95 backdrop-blur-2xl text-white rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex flex-col lg:flex-row h-[90vh] lg:h-[85vh]">
-
-      {/* 🖼️ Left Side: Hero Image & Gallery Preview */}
-      <div className="relative w-full lg:w-[55%] h-64 lg:h-full group overflow-hidden">
+    <div className="space-y-6">
+      {/* Hero Image */}
+      <div className="relative rounded-2xl overflow-hidden h-48">
         <img
           src={thumbnail}
           alt={propertyName}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/30 quic"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent"></div>
 
-        {/* Top Badges */}
-        <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-10">
-          <div className="flex flex-wrap gap-2">
-            <span className="bg-black/50 backdrop-blur-md border border-white/20 text-white px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
-              {propertyType}
-            </span>
-            <span className="bg-orange-600/90 text-white px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-lg">
-              {propertyStatus}
-            </span>
-          </div>
-
+        {/* Badges */}
+        <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+          <span className="bg-black/50 backdrop-blur-md border border-white/20 text-white px-3 py-1 rounded-full text-xs font-bold">
+            {propertyType}
+          </span>
+          <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+            {propertyStatus}
+          </span>
           <span
-            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-white border border-white/10 shadow-lg ${isAdminAproved === "approved"
-              ? "bg-green-500/80"
-              : isAdminAproved === "pending"
-                ? "bg-yellow-500/80"
-                : "bg-red-500/80"
+            className={`px-3 py-1 rounded-full text-xs font-bold text-white ${isAdminAproved === "approved"
+                ? "bg-green-500"
+                : isAdminAproved === "pending"
+                  ? "bg-yellow-500"
+                  : "bg-red-500"
               }`}
           >
             {isAdminAproved}
           </span>
         </div>
 
-        {/* Bottom Info Overlay */}
-        <div className="absolute bottom-6 left-6 right-6 z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight drop-shadow-md">
-            {propertyName}
-          </h2>
-          <div className="flex items-center gap-2 text-gray-300 text-sm font-medium">
-            <FaMapMarkerAlt className="text-orange-500" />
-            <span className="truncate">
-              {location.address}, {location.area}, {location.city}
-            </span>
-          </div>
+        {/* Property Name & Location */}
+        <div className="absolute bottom-3 left-3 right-3">
+          <h2 className="text-xl font-bold text-white mb-1 line-clamp-1">{propertyName}</h2>
+          <p className="text-gray-300 text-xs flex items-center gap-1">
+            <FaMapMarkerAlt className="text-orange-400" />
+            {location.city}, {location.country}
+          </p>
         </div>
       </div>
 
-      {/* 📜 Right Side: Scrollable Details */}
-      <div className="w-full lg:w-[45%] h-full flex flex-col bg-[#0a0a0a]">
+      {/* Price */}
+      <div className="flex items-center justify-between bg-white/5 border border-white/10 p-4 rounded-xl">
+        <div>
+          <p className="text-gray-500 text-xs mb-1">Price</p>
+          <h3 className="text-2xl font-bold text-white flex items-center gap-1">
+            <FaDollarSign className="text-orange-400" />
+            {price?.toLocaleString()}
+          </h3>
+        </div>
+      </div>
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8 custom-scrollbar">
+      {/* Stats Grid */}
+      <div className="grid grid-cols-3 gap-2">
+        <StatItem icon={<FaBed />} label="Beds" value={details.beds} />
+        <StatItem icon={<FaBath />} label="Baths" value={details.baths} />
+        <StatItem icon={<FaRulerCombined />} label="Area" value={details.area ? `${details.area}` : "N/A"} />
+        <StatItem icon={<MdBalcony />} label="Balcony" value={details.belcony} />
+        <StatItem icon={<FaDoorOpen />} label="Rooms" value={details.totalRoom} />
+        <StatItem icon={<FaCalendarAlt />} label="Year" value={details.buildYear} />
+      </div>
 
-          {/* Price Tag */}
-          <div className="flex justify-between items-center bg-white/5 border border-white/10 p-5 rounded-2xl">
-            <div>
-              <p className="text-gray-400 text-sm mb-1">Price</p>
-              <h3 className="text-3xl font-bold text-white flex items-center gap-1">
-                <FaDollarSign className="text-orange-500 text-2xl" />
-                {price?.toLocaleString()}
-              </h3>
-            </div>
-            <button className="px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-full transition-all shadow-lg shadow-orange-600/20">
-              Make Offer
-            </button>
-          </div>
+      {/* Description */}
+      {description && (
+        <div>
+          <h3 className="text-sm font-bold text-white mb-2 border-l-2 border-orange-500 pl-2">Overview</h3>
+          <p className="text-gray-400 text-xs leading-relaxed line-clamp-4">{description}</p>
+        </div>
+      )}
 
-          {/* Key Stats Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <Info icon={<FaBed />} label="Bedrooms" value={details.beds} />
-            <Info icon={<FaBath />} label="Bathrooms" value={details.baths} />
-            <Info icon={<FaRulerCombined />} label="Area" value={details.area ? `${details.area} sqft` : "N/A"} />
-            <Info icon={<MdBalcony />} label="Balcony" value={details.belcony} />
-            <Info icon={<FaDoorOpen />} label="Rooms" value={details.totalRoom} />
-            <Info icon={<FaCalendarAlt />} label="Year" value={details.buildYear} />
-          </div>
-
-          {/* About Section */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-white border-l-4 border-orange-500 pl-3">Overview</h3>
-            <p className="text-gray-400 leading-relaxed text-sm text-justify">
-              {description}
-            </p>
-          </div>
-
-          {/* Amenities */}
-          {amenities.length > 0 && (
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-white border-l-4 border-orange-500 pl-3">Amenities</h3>
-              <div className="flex flex-wrap gap-2">
-                {amenities.map((a, i) => (
-                  <span
-                    key={i}
-                    className="bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 px-4 py-2 rounded-xl text-xs font-medium transition-colors"
-                  >
-                    ✨ {a}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Mini Gallery */}
-          {images.length > 0 && (
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-white border-l-4 border-orange-500 pl-3">Gallery</h3>
-              <div className="grid grid-cols-3 gap-2">
-                {images.slice(0, 6).map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={`Gallery ${i}`}
-                    className="h-24 w-full object-cover rounded-xl border border-white/10 hover:opacity-80 cursor-pointer transition"
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Agent & Agency Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-white/10">
-            {/* Agent */}
-            <div className="bg-white/5 border border-white/10 p-4 rounded-2xl flex items-center gap-4">
-              <img
-                src={agent.photoUrl}
-                alt={agent.name}
-                className="w-12 h-12 rounded-full object-cover border-2 border-orange-500"
-              />
-              <div className="overflow-hidden">
-                <p className="font-bold text-white text-sm truncate">{agent.name}</p>
-                <p className="text-xs text-orange-400">Listing Agent</p>
-              </div>
-            </div>
-
-            {/* Agency */}
-            {agencyData && (
-              <div className="bg-white/5 border border-white/10 p-4 rounded-2xl flex items-center gap-4">
-                <img
-                  src={agencyData.logoUrl}
-                  alt={agencyData.agencyName}
-                  className="w-12 h-12 rounded-lg object-cover bg-white"
-                />
-                <div className="overflow-hidden">
-                  <p className="font-bold text-white text-sm truncate">{agencyData.agencyName}</p>
-                  <p className="text-xs text-gray-400 truncate">{agencyData.title}</p>
-                </div>
-              </div>
+      {/* Amenities */}
+      {amenities.length > 0 && (
+        <div>
+          <h3 className="text-sm font-bold text-white mb-2 border-l-2 border-orange-500 pl-2">Amenities</h3>
+          <div className="flex flex-wrap gap-1.5">
+            {amenities.slice(0, 6).map((a, i) => (
+              <span
+                key={i}
+                className="bg-white/5 border border-white/10 text-gray-300 px-2 py-1 rounded-lg text-xs"
+              >
+                {a}
+              </span>
+            ))}
+            {amenities.length > 6 && (
+              <span className="bg-orange-500/20 border border-orange-500/30 text-orange-400 px-2 py-1 rounded-lg text-xs">
+                +{amenities.length - 6} more
+              </span>
             )}
           </div>
         </div>
+      )}
 
-        {/* Footer Actions (Sticky) */}
-        <div className="p-4 bg-[#0a0a0a] border-t border-white/10 flex gap-3">
-          <button className="flex-1 bg-white hover:bg-gray-200 text-black font-bold py-3 rounded-xl transition flex justify-center items-center gap-2">
-            <FaPhone className="text-sm" /> Call Agent
-          </button>
-          <button className="flex-1 bg-transparent border border-white/20 hover:bg-white/5 text-white font-bold py-3 rounded-xl transition flex justify-center items-center gap-2">
-            <FaEnvelope className="text-sm" /> Email
-          </button>
+      {/* Gallery */}
+      {images.length > 0 && (
+        <div>
+          <h3 className="text-sm font-bold text-white mb-2 border-l-2 border-orange-500 pl-2">Gallery</h3>
+          <div className="grid grid-cols-4 gap-1.5">
+            {images.slice(0, 4).map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`Gallery ${i}`}
+                className="h-16 w-full object-cover rounded-lg border border-white/10"
+              />
+            ))}
+          </div>
         </div>
+      )}
 
+      {/* Agent & Agency */}
+      <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
+        {agent?.name && (
+          <div className="bg-white/5 border border-white/10 p-3 rounded-xl flex items-center gap-2">
+            <img
+              src={agent.photoUrl}
+              alt={agent.name}
+              className="w-10 h-10 rounded-full object-cover border border-orange-500"
+            />
+            <div className="overflow-hidden">
+              <p className="font-bold text-white text-xs truncate">{agent.name}</p>
+              <p className="text-[10px] text-orange-400">Agent</p>
+            </div>
+          </div>
+        )}
+        {agencyData && (
+          <div className="bg-white/5 border border-white/10 p-3 rounded-xl flex items-center gap-2">
+            <img
+              src={agencyData.logoUrl}
+              alt={agencyData.agencyName}
+              className="w-10 h-10 rounded-lg object-cover"
+            />
+            <div className="overflow-hidden">
+              <p className="font-bold text-white text-xs truncate">{agencyData.agencyName}</p>
+              <p className="text-[10px] text-gray-400">Agency</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-// Reusable Info Item
-const Info = ({ icon, label, value }) => (
-  <div className="bg-white/5 border border-white/5 p-3 rounded-xl flex items-center gap-3 hover:bg-white/10 transition-colors">
-    <span className="text-orange-500 text-lg">{icon}</span>
-    <div>
-      <p className="text-[10px] text-gray-500 uppercase tracking-wide">{label}</p>
-      <p className="font-bold text-sm text-gray-200">{value || "N/A"}</p>
-    </div>
+// Stat Item
+const StatItem = ({ icon, label, value }) => (
+  <div className="bg-white/5 border border-white/5 p-2.5 rounded-xl text-center">
+    <span className="text-orange-400 text-sm block mb-1">{icon}</span>
+    <p className="text-[10px] text-gray-500 uppercase">{label}</p>
+    <p className="font-bold text-xs text-white">{value || "N/A"}</p>
   </div>
 );
 
