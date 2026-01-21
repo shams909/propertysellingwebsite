@@ -146,7 +146,7 @@ const FilterSection = ({ filter, setFilter }) => {
           <button
             type="button"
             onClick={handleReset}
-            className="flex w-full btn items-center justify-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-700 hover:shadow-lg hover:shadow-orange-500/20 border-none transition-all"
+            className="flex w-full btn items-center justify-center gap-2 px-6 py-3 bg-orange-500/20 hover:bg-orange-500/30 text-orange-400 rounded-full font-bold border border-orange-500/30 transition-all backdrop-blur-md"
           >
             <RiResetLeftFill size={18} />
             Reset Filters

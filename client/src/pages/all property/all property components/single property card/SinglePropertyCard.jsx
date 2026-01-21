@@ -89,9 +89,9 @@ const SinglePropertyCard = ({ property }) => {
   };
 
   return (
-    <div className="card bg-white/5 border border-white/10 shadow-xl group hover:shadow-orange-500/10 transition-all duration-300 backdrop-blur-md rounded-2xl overflow-hidden h-full flex flex-col justify-between">
+    <div className="card bg-white/5 border border-white/10 shadow-xl group hover:shadow-orange-500/10 transition-all duration-300 backdrop-blur-md rounded-3xl overflow-hidden h-full flex flex-col justify-between">
       <figure className="relative h-64 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent z-10 pointer-events-none" />
         <img src={thumbnail} alt={propertyName} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
 
         {/* Status */}
@@ -164,7 +164,7 @@ const SinglePropertyCard = ({ property }) => {
 
           <Link
             to={`/all-property/${_id}`}
-            className="px-5 py-2 rounded-lg bg-white/5 hover:bg-orange-500 text-white text-sm font-semibold transition-all border border-white/10 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20"
+            className="px-5 py-2 rounded-full bg-white/10 hover:bg-orange-500 text-white text-sm font-semibold transition-all border border-white/10 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/20 backdrop-blur-md"
           >
             View Details
           </Link>

@@ -28,7 +28,7 @@ const AllPropertyCardSection = ({ properties, filter, setFilter }) => {
         {/* Mobile Filter Button */}
         <button
           onClick={toggleDrawer(true)}
-          className="lg:hidden py-2 px-4 bg-orange-500 text-white rounded-full shadow hover:bg-white hover:text-orange-500 transition-all"
+          className="lg:hidden py-2.5 px-5 bg-white/10 hover:bg-orange-500/20 text-white rounded-full shadow-lg border border-white/10 hover:border-orange-500/30 transition-all backdrop-blur-md font-medium"
         >
           Filter
         </button>
