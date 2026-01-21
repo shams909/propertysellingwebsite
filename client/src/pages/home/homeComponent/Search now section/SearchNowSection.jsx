@@ -42,7 +42,7 @@ const SearchNowSection = () => {
             </p>
 
             {/* Button */}
-            <button className="bg-orange-500 text-white px-6 py-3 rounded-xl hover:bg-orange-600 transition text-sm sm:text-base shadow-lg shadow-orange-500/20 relative z-10 font-semibold">
+            <button className="bg-orange-500 text-white px-6 py-3 rounded-4xl hover:bg-orange-600 transition text-sm sm:text-base shadow-lg shadow-orange-500/20 relative z-10 font-semibold">
               Search Now
             </button>
           </div>
