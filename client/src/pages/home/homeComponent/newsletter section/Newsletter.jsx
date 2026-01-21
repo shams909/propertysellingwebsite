@@ -44,7 +44,7 @@ const Newsletter = () => {
                 bg-black/20
                 text-white
                 py-4 px-6
-                rounded-xl
+                rounded-4xl
                 text-center
                 border border-white/10
                 focus:outline-none
