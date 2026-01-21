@@ -122,7 +122,7 @@ const SendRequestSection = () => {
                     {/* ---- Agent Info ---- */}
                     <div className="bg-white/[0.03] border border-white/10 p-6 rounded-2xl shadow-lg space-y-5 text-center backdrop-blur-md">
                         <div className="w-20 h-20 mx-auto rounded-full border-2 border-orange-500/50 p-1 bg-white/5">
-                            <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-2xl">👤</div>
+                            <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-2xl"><img className="w-full h-full rounded-full" src={property?.agent?.photoUrl} /></div>
                         </div>
 
                         <div>
