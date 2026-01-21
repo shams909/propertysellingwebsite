@@ -272,296 +272,304 @@ const UpdatePropertyDetails = () => {
   }
 
   return (
-    <div className="max-w-6xl my-6 mx-auto p-6 bg-white shadow-lg rounded-lg space-y-6">
-      <h2 className="text-2xl font-bold text-orange-600">Update Property</h2>
+    <div className="min-h-screen bg-[#050505] py-8 px-4">
+      {/* Background Orbs */}
+      <div className="fixed top-0 left-0 w-[400px] h-[400px] bg-orange-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="fixed bottom-0 right-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* ---------------- General Info ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">
-            General Info
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              {...register("propertyName", { required: true })}
-              placeholder="Property Name"
-              className="input input-bordered w-full"
-            />
-            <select
-              {...register("propertyType")}
-              className="select select-bordered w-full"
-            >
-              <option>Apartment</option>
-              <option>House</option>
-              <option>Villa</option>
-              <option>Commercial</option>
-            </select>
-            <select
-              {...register("propertyStatus")}
-              className="select select-bordered w-full"
-            >
-              <option>For Sale</option>
-              <option>For Rent</option>
-            </select>
-            <input
-              type="number"
-              {...register("price", { required: true })}
-              placeholder="Price"
-              className="input input-bordered w-full"
-            />
-          </div>
-        </section>
+      <div className="max-w-5xl mx-auto relative z-10">
+        <h2 className="text-2xl font-bold text-white mb-6">Update <span className="text-orange-500">Property</span></h2>
 
-        {/* ---------------- Property Details ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">
-            Property Details
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <input
-              {...register("details.totalRoom")}
-              placeholder="Total Rooms"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("details.beds")}
-              placeholder="Beds"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("details.baths")}
-              placeholder="Baths"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("details.belcony")}
-              placeholder="Balcony"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("details.area")}
-              placeholder="Area (sq.ft)"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("details.buildYear")}
-              placeholder="Build Year"
-              className="input input-bordered w-full"
-            />
-          </div>
-        </section>
-
-        {/* ---------------- Amenities ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">Amenities</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Object.keys(amenitiesIconMap).map((amenity) => {
-              const Icon = amenitiesIconMap[amenity];
-              return (
-                <label
-                  key={amenity}
-                  className="flex items-center gap-2 p-2 border rounded-lg hover:bg-orange-100 hover:text-orange-600 transition-colors cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    value={amenity}
-                    {...register("amenities")}
-                    className="checkbox checkbox-primary"
-                  />
-                  <Icon className="text-orange-600" size={20} />
-                  {amenity}
-                </label>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* ---------------- Images Upload ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">
-            Property Images
-          </h3>
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={handleImageUpload}
-            disabled={uploading}
-            className="file-input file-input-bordered w-full"
-          />
-          {uploading && (
-            <div className="text-sm text-orange-600">Uploading images...</div>
-          )}
-          {imagePreviews.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
-              {imagePreviews.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={`Preview ${idx}`}
-                  className="w-full h-32 object-cover rounded-lg border"
-                />
-              ))}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          {/* ---------------- General Info ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">
+              General Info
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                {...register("propertyName", { required: true })}
+                placeholder="Property Name"
+                className="input input-bordered w-full"
+              />
+              <select
+                {...register("propertyType")}
+                className="select select-bordered w-full"
+              >
+                <option>Apartment</option>
+                <option>House</option>
+                <option>Villa</option>
+                <option>Commercial</option>
+              </select>
+              <select
+                {...register("propertyStatus")}
+                className="select select-bordered w-full"
+              >
+                <option>For Sale</option>
+                <option>For Rent</option>
+              </select>
+              <input
+                type="number"
+                {...register("price", { required: true })}
+                placeholder="Price"
+                className="input input-bordered w-full"
+              />
             </div>
+          </section>
+
+          {/* ---------------- Property Details ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">
+              Property Details
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <input
+                {...register("details.totalRoom")}
+                placeholder="Total Rooms"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("details.beds")}
+                placeholder="Beds"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("details.baths")}
+                placeholder="Baths"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("details.belcony")}
+                placeholder="Balcony"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("details.area")}
+                placeholder="Area (sq.ft)"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("details.buildYear")}
+                placeholder="Build Year"
+                className="input input-bordered w-full"
+              />
+            </div>
+          </section>
+
+          {/* ---------------- Amenities ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">Amenities</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {Object.keys(amenitiesIconMap).map((amenity) => {
+                const Icon = amenitiesIconMap[amenity];
+                return (
+                  <label
+                    key={amenity}
+                    className="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-orange-500/10 hover:border-orange-500/30 transition-all cursor-pointer text-gray-300 hover:text-orange-400 text-sm"
+                  >
+                    <input
+                      type="checkbox"
+                      value={amenity}
+                      {...register("amenities")}
+                      className="checkbox checkbox-sm checkbox-warning"
+                    />
+                    <Icon className="text-orange-500" size={16} />
+                    {amenity}
+                  </label>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* ---------------- Images Upload ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">
+              Property Images
+            </h3>
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImageUpload}
+              disabled={uploading}
+              className="file-input file-input-bordered w-full"
+            />
+            {uploading && (
+              <div className="text-sm text-orange-400">Uploading images...</div>
+            )}
+            {imagePreviews.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+                {imagePreviews.map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={img}
+                    alt={`Preview ${idx}`}
+                    className="w-full h-28 object-cover rounded-xl border border-white/10"
+                  />
+                ))}
+              </div>
+            )}
+          </section>
+
+          {/* ---------------- Videos ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">
+              Property Videos
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                {...register("videos.0")}
+                placeholder="Video URL 1"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("videos.1")}
+                placeholder="Video URL 2"
+                className="input input-bordered w-full"
+              />
+            </div>
+          </section>
+
+          {/* ---------------- Location ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">Location</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <input
+                {...register("location.address")}
+                placeholder="Address"
+                className="input input-bordered w-full col-span-2 md:col-span-3"
+              />
+              <input
+                {...register("location.area")}
+                placeholder="Area"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("location.city")}
+                placeholder="City"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("location.country")}
+                placeholder="Country"
+                className="input input-bordered w-full"
+              />
+              <input
+                type="number"
+                {...register("location.zip_code")}
+                placeholder="Zip Code"
+                className="input input-bordered w-full"
+              />
+            </div>
+          </section>
+
+          {/* ---------------- Description ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">Description</h3>
+            <textarea
+              {...register("description")}
+              placeholder="Property Description"
+              className="textarea textarea-bordered w-full h-28"
+            />
+          </section>
+
+          {/* ---------------- Agent Info ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">Agent Info</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                {...register("agent.name")}
+                readOnly
+                placeholder="Agent Name"
+                className="input input-bordered w-full opacity-60"
+              />
+              <input
+                type="email"
+                readOnly
+                {...register("agent.email")}
+                placeholder="Agent Email"
+                className="input input-bordered w-full opacity-60"
+              />
+              <input
+                type="number"
+                {...register("agent.phone")}
+                placeholder="Agent Phone"
+                className="input input-bordered w-full"
+              />
+              <input
+                readOnly
+                {...register("agent.photoUrl")}
+                placeholder="Agent Photo URL"
+                className="input input-bordered w-full opacity-60"
+              />
+            </div>
+          </section>
+
+          {/* ---------------- Agency Info ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5 space-y-4">
+            <h3 className="text-sm font-semibold text-orange-500 uppercase tracking-wide">Agency Info</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="email"
+                {...register("agencyEmail")}
+                placeholder="Agency Email"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("agency.agencyName")}
+                placeholder="Agency Name"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("agency.location")}
+                placeholder="Agency Location"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("agency.title")}
+                placeholder="Agency Title"
+                className="input input-bordered w-full"
+              />
+              <input
+                {...register("agency.logoUrl")}
+                placeholder="Agency Logo URL"
+                className="input input-bordered w-full md:col-span-2"
+              />
+            </div>
+          </section>
+
+          {/* ---------------- Extra Options ---------------- */}
+          <section className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-5">
+            <label className="flex items-center gap-3 text-gray-300 cursor-pointer">
+              <input
+                type="checkbox"
+                {...register("isFeatured")}
+                className="checkbox checkbox-warning"
+              />
+              <span className="text-sm">Mark as Featured Property</span>
+            </label>
+          </section>
+
+          <button
+            type="submit"
+            disabled={loading || uploading}
+            className="w-full py-4 rounded-full bg-linear-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-bold text-sm shadow-lg shadow-orange-500/25 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading
+              ? "Updating Property..."
+              : uploading
+                ? "Uploading Images..."
+                : "Update Property"}
+          </button>
+
+          {errors.propertyName && (
+            <p className="text-red-400 text-sm">Property name is required</p>
           )}
-        </section>
-
-        {/* ---------------- Videos ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">
-            Property Videos
-          </h3>
-          <input
-            {...register("videos.0")}
-            placeholder="Video URL 1"
-            className="input input-bordered w-full"
-          />
-          <input
-            {...register("videos.1")}
-            placeholder="Video URL 2"
-            className="input input-bordered w-full"
-          />
-        </section>
-
-        {/* ---------------- Location ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">Location</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <input
-              {...register("location.address")}
-              placeholder="Address"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("location.area")}
-              placeholder="Area"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("location.city")}
-              placeholder="City"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("location.country")}
-              placeholder="Country"
-              className="input input-bordered w-full"
-            />
-            <input
-              type="number"
-              {...register("location.zip_code")}
-              placeholder="Zip Code"
-              className="input input-bordered w-full"
-            />
-          </div>
-        </section>
-
-        {/* ---------------- Description ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">Description</h3>
-          <textarea
-            {...register("description")}
-            placeholder="Property Description"
-            className="textarea textarea-bordered w-full h-32"
-          />
-        </section>
-
-        {/* ---------------- Agent Info ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">Agent Info</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              {...register("agent.name")}
-              readOnly
-              placeholder="Agent Name"
-              className="input input-bordered w-full"
-            />
-            <input
-              type="email"
-              readOnly
-              {...register("agent.email")}
-              placeholder="Agent Email"
-              className="input input-bordered w-full"
-            />
-            <input
-              type="number"
-              {...register("agent.phone")}
-              placeholder="Agent Phone"
-              className="input input-bordered w-full"
-            />
-            <input
-              readOnly
-              {...register("agent.photoUrl")}
-              placeholder="Agent Photo URL"
-              className="input input-bordered w-full"
-            />
-          </div>
-        </section>
-
-        {/* ---------------- Agency Info ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <h3 className="text-lg font-semibold text-orange-500">Agency Info</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              type="email"
-              {...register("agencyEmail")}
-              placeholder="Agency Email"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("agency.agencyName")}
-              placeholder="Agency Name"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("agency.location")}
-              placeholder="Agency Location"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("agency.title")}
-              placeholder="Agency Title"
-              className="input input-bordered w-full"
-            />
-            <input
-              {...register("agency.logoUrl")}
-              placeholder="Agency Logo URL"
-              className="input input-bordered w-full"
-            />
-          </div>
-        </section>
-
-        {/* ---------------- Extra Options ---------------- */}
-        <section className="p-4 border rounded-lg shadow-sm space-y-4">
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              {...register("isFeatured")}
-              className="checkbox checkbox-primary"
-            />
-            Mark as Featured
-          </label>
-        </section>
-
-        <button
-          type="submit"
-          disabled={loading || uploading}
-          className="btn btn-primary w-full bg-linear-to-r from-orange-400 to-orange-600 border-none text-white disabled:opacity-50"
-        >
-          {loading
-            ? "Updating Property..."
-            : uploading
-            ? "Uploading Images..."
-            : "Update Property"}
-        </button>
-
-        {errors.propertyName && (
-          <p className="text-red-500 text-sm">Property name is required</p>
-        )}
-        {errors.price && (
-          <p className="text-red-500 text-sm">Price is required</p>
-        )}
-      </form>
+          {errors.price && (
+            <p className="text-red-400 text-sm">Price is required</p>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
