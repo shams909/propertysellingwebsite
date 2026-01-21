@@ -4,11 +4,8 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../provider/AuthProvider";
-import { CiHeart } from "react-icons/ci";
-import { MdNotificationsActive } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
-import { RiMessage2Fill } from "react-icons/ri";
-import { FiSettings, FiLogOut, FiUser, FiLayout } from "react-icons/fi";
+import { FiSettings, FiLogOut, FiUser, FiLayout, FiHome, FiGrid, FiBriefcase, FiFileText, FiMail, FiChevronRight } from "react-icons/fi";
 import { confirmationToast, successToast } from "../../utils/toastUtils";
 import useFavourites from "../../hooks/useFavourites";
 import useAdmin from "../../hooks/useAdmin";
@@ -26,13 +23,13 @@ const Navbar = () => {
     localStorage.setItem("role", "buyer");
   }
 
-  // Filter out false values if user doesn't exist
+  // Navigation links with icons
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Property", href: "/all-property" },
-    { name: "Agency", href: "/all-agency" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", href: "/", icon: FiHome },
+    { name: "Property", href: "/all-property", icon: FiGrid },
+    { name: "Agency", href: "/all-agency", icon: FiBriefcase },
+    { name: "Blog", href: "/blog", icon: FiFileText },
+    { name: "Contact", href: "/contact", icon: FiMail },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -51,7 +48,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed w-full z-50 top-5 px-4 sm:px-6 lg:px-8 pointer-events-none">
-      <nav className="max-w-7xl mx-auto bg-black/80 backdrop-blur-md border border-white/10 shadow-xl rounded-full pointer-events-auto transition-all duration-300">
+      <nav className={`max-w-7xl mx-auto bg-black/80 backdrop-blur-md border border-white/10 shadow-xl pointer-events-auto transition-all duration-300 ${isOpen ? "rounded-2xl" : "rounded-full"}`}>
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -182,10 +179,10 @@ const Navbar = () => {
             <div className="lg:hidden flex items-center">
               <button
                 onClick={toggleMenu}
-                className="inline-flex items-center justify-center p-2 rounded-full text-gray-200 hover:bg-white/10 transition-colors"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-gray-200 hover:bg-white/15 transition-all"
               >
                 <svg
-                  className={`w-6 h-6 transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
+                  className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -211,39 +208,157 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation Dropdown */}
+        {/* Mobile Navigation Dropdown - iOS Style */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          className={`lg:hidden overflow-hidden transition-all duration-400 ease-out ${isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
             }`}
         >
-          <div className="px-4 pb-4 space-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className="block px-4 py-3 text-base font-medium text-gray-200 hover:bg-white/10 hover:text-white rounded-xl transition-all"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+          <div className="px-3 pb-4 pt-2">
+            {/* Navigation Links - Glass Card */}
+            <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl overflow-hidden mb-3">
+              {navLinks.map((link, index) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className={`flex items-center justify-between px-4 py-3.5 text-gray-200 hover:bg-white/10 hover:text-white transition-all active:scale-[0.98] ${index !== navLinks.length - 1 ? "border-b border-white/5" : ""
+                      }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+                        <Icon size={16} className="text-orange-400" />
+                      </div>
+                      <span className="font-medium">{link.name}</span>
+                    </div>
+                    <FiChevronRight size={16} className="text-gray-500" />
+                  </Link>
+                );
+              })}
+            </div>
 
-            {/* Mobile Auth Buttons */}
-            {!user?.email && (
-              <div className="grid grid-cols-2 gap-3 pt-2">
+            {/* User Section or Auth Buttons */}
+            {user?.email ? (
+              <>
+                {/* User Info Card */}
+                <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-4 mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-orange-500/50">
+                      <img
+                        src={user?.photoURL || "/placeholder.svg"}
+                        alt="User"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-white text-sm">{user?.displayName || "User"}</p>
+                      <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+                    </div>
+                    {rule === "admin" && (
+                      <span className="px-2 py-0.5 text-[10px] font-bold uppercase bg-orange-500/20 text-orange-400 border border-orange-500/30 rounded-full">
+                        Admin
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl overflow-hidden mb-3">
+                  <Link
+                    to="/profile"
+                    className="flex items-center justify-between px-4 py-3.5 text-gray-200 hover:bg-white/10 border-b border-white/5"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                        <FiUser size={16} className="text-blue-400" />
+                      </div>
+                      <span className="font-medium">Profile</span>
+                    </div>
+                    <FiChevronRight size={16} className="text-gray-500" />
+                  </Link>
+
+                  <Link
+                    to="/dashboard/favourites"
+                    className="flex items-center justify-between px-4 py-3.5 text-gray-200 hover:bg-white/10 border-b border-white/5"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+                        <FaHeart size={14} className="text-red-400" />
+                      </div>
+                      <span className="font-medium">Favourites</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {favourites.length > 0 && (
+                        <span className="px-2 py-0.5 text-xs font-bold bg-red-500/20 text-red-400 rounded-full">
+                          {favourites.length}
+                        </span>
+                      )}
+                      <FiChevronRight size={16} className="text-gray-500" />
+                    </div>
+                  </Link>
+
+                  {rule === "admin" && (
+                    <Link
+                      to="/dashboard"
+                      className="flex items-center justify-between px-4 py-3.5 text-gray-200 hover:bg-white/10 border-b border-white/5"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center">
+                          <FiLayout size={16} className="text-orange-400" />
+                        </div>
+                        <span className="font-medium text-orange-400">Dashboard</span>
+                      </div>
+                      <FiChevronRight size={16} className="text-gray-500" />
+                    </Link>
+                  )}
+
+                  <Link
+                    to="/settings"
+                    className="flex items-center justify-between px-4 py-3.5 text-gray-200 hover:bg-white/10"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-gray-500/20 flex items-center justify-center">
+                        <FiSettings size={16} className="text-gray-400" />
+                      </div>
+                      <span className="font-medium">Settings</span>
+                    </div>
+                    <FiChevronRight size={16} className="text-gray-500" />
+                  </Link>
+                </div>
+
+                {/* Logout Button */}
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    handleLogout();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-red-500/10 border border-red-500/20 text-red-400 font-semibold rounded-2xl hover:bg-red-500/20 transition-all active:scale-[0.98]"
+                >
+                  <FiLogOut size={18} />
+                  <span>Logout</span>
+                </button>
+              </>
+            ) : (
+              /* Auth Buttons for Non-logged in users */
+              <div className="space-y-3">
                 <Link
                   to="/login"
-                  className="flex justify-center items-center px-4 py-3 text-center font-semibold text-white border border-white/20 hover:bg-white/10 rounded-xl transition-colors"
+                  className="flex justify-center items-center py-3.5 w-full text-center font-semibold text-white bg-white/10 border border-white/10 hover:bg-white/15 rounded-2xl transition-all active:scale-[0.98]"
                   onClick={() => setIsOpen(false)}
                 >
                   Log In
                 </Link>
                 <Link
                   to="/register"
-                  className="flex justify-center items-center px-4 py-3 text-center bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition-colors shadow-lg"
+                  className="flex justify-center items-center py-3.5 w-full text-center bg-gradient-to-r from-orange-600 to-orange-500 text-white font-bold rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all active:scale-[0.98]"
                   onClick={() => setIsOpen(false)}
                 >
-                  Sign Up
+                  Create Account
                 </Link>
               </div>
             )}
