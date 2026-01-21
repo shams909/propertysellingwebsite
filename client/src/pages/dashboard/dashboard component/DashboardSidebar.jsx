@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { useState, useContext } from "react";
 import Swal from "sweetalert2";
@@ -91,15 +91,15 @@ const DashboardSidebar = () => {
       {/* Sidebar Container */}
       <aside
         className={`sticky top-0 h-screen bg-[#0f0f0f]/60 backdrop-blur-2xl border-r border-white/5 text-white flex flex-col transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-40 ${isDrawerOpen
-            ? "fixed left-0 top-0 w-72 translate-x-0 shadow-2xl shadow-black/50"
-            : "hidden md:flex md:w-72"
+          ? "fixed left-0 top-0 w-72 translate-x-0 shadow-2xl shadow-black/50"
+          : "hidden md:flex md:w-72"
           }`}
       >
         {/* Logo Section */}
         <div className="p-6 flex justify-center items-center">
-          <div className="bg-white/5 p-4 rounded-3xl border border-white/5 w-full flex justify-center backdrop-blur-md">
+          <Link to="/" className="bg-white/5 p-4 rounded-3xl border border-white/5 w-full flex justify-center backdrop-blur-md">
             <img src={logo} alt="Logo" className="h-8 object-contain" />
-          </div>
+          </Link>
         </div>
 
         {/* Scrollable Nav Content */}
