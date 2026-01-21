@@ -57,18 +57,36 @@ const SendRequestSection = () => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: "Your appointment request has been sent!",
+                    title: "Appointment Request Sent!",
+                    text: "The agent will review your request soon.",
                     showConfirmButton: false,
-                    timer: 1500,
+                    timer: 2000,
+                    background: "#1a1a1a",
+                    color: "#fff",
+                    iconColor: "#22c55e",
+                    customClass: {
+                        popup: 'rounded-3xl border border-white/10',
+                        title: 'text-white font-bold',
+                    }
                 });
             }
             if (res.data.exists) {
                 Swal.fire({
                     position: "center",
                     icon: "info",
-                    title: "You have already requested an appointment for this property.",
-                    showConfirmButton: false,
-                    timer: 2000,
+                    title: "Already Requested",
+                    text: "You have already requested an appointment for this property.",
+                    showConfirmButton: true,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#ea580c",
+                    background: "#1a1a1a",
+                    color: "#fff",
+                    iconColor: "#3b82f6",
+                    customClass: {
+                        popup: 'rounded-3xl border border-white/10',
+                        title: 'text-white font-bold',
+                        confirmButton: 'rounded-full px-6',
+                    }
                 });
             }
         });
