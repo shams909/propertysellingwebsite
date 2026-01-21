@@ -5,6 +5,7 @@ import { deleteProperty } from "../../../api/properties.api";
 import Swal from "sweetalert2";
 import PropertyDetailsModal from "../../../component/propert details modal/PropertyDetailsModal";
 import Loading from "../../../component/loading/Loading";
+import { FiEye, FiEdit2, FiTrash2 } from "react-icons/fi";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -130,14 +131,15 @@ const ManageProperty = () => {
                     <div className="flex gap-2 justify-center">
                       {/* Details Button */}
                       <button
-                        className="px-3 py-1.5 rounded-full text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30 transition-all backdrop-blur-md"
+                        className="w-9 h-9 rounded-full flex items-center justify-center bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30 hover:scale-110 transition-all backdrop-blur-md"
                         onClick={() =>
                           document
                             .getElementById(`modal_${property._id}`)
                             .showModal()
                         }
+                        title="View Details"
                       >
-                        Details
+                        <FiEye size={16} />
                       </button>
 
                       <dialog
@@ -157,17 +159,19 @@ const ManageProperty = () => {
                       {/* Update Button */}
                       <Link
                         to={`/dashboard/updateProperty/${property._id}`}
-                        className="px-3 py-1.5 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/30 transition-all backdrop-blur-md"
+                        className="w-9 h-9 rounded-full flex items-center justify-center bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/30 hover:scale-110 transition-all backdrop-blur-md"
+                        title="Edit Property"
                       >
-                        Update
+                        <FiEdit2 size={16} />
                       </Link>
 
                       {/* Delete Button */}
                       <button
                         onClick={() => handleDelete(property._id)}
-                        className="px-3 py-1.5 rounded-full text-xs font-medium bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 transition-all backdrop-blur-md"
+                        className="w-9 h-9 rounded-full flex items-center justify-center bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30 hover:scale-110 transition-all backdrop-blur-md"
+                        title="Delete Property"
                       >
-                        Delete
+                        <FiTrash2 size={16} />
                       </button>
                     </div>
                   </td>
@@ -193,8 +197,8 @@ const ManageProperty = () => {
                 <button
                   key={page}
                   className={`w-10 h-10 rounded-full text-sm font-medium transition-all backdrop-blur-md ${currentPage === page + 1
-                      ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
-                      : "bg-white/10 text-gray-400 border border-white/10 hover:bg-white/15 hover:text-white"
+                    ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
+                    : "bg-white/10 text-gray-400 border border-white/10 hover:bg-white/15 hover:text-white"
                     }`}
                   onClick={() => setCurrentPage(page + 1)}
                 >
