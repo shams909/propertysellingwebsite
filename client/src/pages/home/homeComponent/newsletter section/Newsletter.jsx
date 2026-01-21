@@ -55,7 +55,7 @@ const Newsletter = () => {
               "
             />
 
-            <button className="bg-linear-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white px-8 py-4 rounded-xl text-sm font-bold shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all transform active:scale-95 self-center w-full sm:w-auto">
+            <button className="bg-linear-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white px-8 py-4 rounded-4xl text-sm font-bold shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all transform active:scale-95 self-center w-full sm:w-auto">
               Subscribe Now
             </button>
           </form>
