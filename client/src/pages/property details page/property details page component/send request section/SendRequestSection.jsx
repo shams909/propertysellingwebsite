@@ -57,16 +57,18 @@ const SendRequestSection = () => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: "Appointment Request Sent!",
+                    title: "Request Sent!",
                     text: "The agent will review your request soon.",
                     showConfirmButton: false,
-                    timer: 2000,
-                    background: "#1a1a1a",
+                    timer: 2500,
+                    background: "rgba(20, 20, 20, 0.95)",
                     color: "#fff",
                     iconColor: "#22c55e",
+                    backdrop: "rgba(0, 0, 0, 0.8)",
                     customClass: {
-                        popup: 'rounded-3xl border border-white/10',
-                        title: 'text-white font-bold',
+                        popup: 'swal-glass-popup',
+                        title: 'swal-glass-title',
+                        htmlContainer: 'swal-glass-text',
                     }
                 });
             }
@@ -77,15 +79,17 @@ const SendRequestSection = () => {
                     title: "Already Requested",
                     text: "You have already requested an appointment for this property.",
                     showConfirmButton: true,
-                    confirmButtonText: "OK",
+                    confirmButtonText: "Got it",
                     confirmButtonColor: "#ea580c",
-                    background: "#1a1a1a",
+                    background: "rgba(20, 20, 20, 0.95)",
                     color: "#fff",
-                    iconColor: "#3b82f6",
+                    iconColor: "#f97316",
+                    backdrop: "rgba(0, 0, 0, 0.8)",
                     customClass: {
-                        popup: 'rounded-3xl border border-white/10',
-                        title: 'text-white font-bold',
-                        confirmButton: 'rounded-full px-6',
+                        popup: 'swal-glass-popup',
+                        title: 'swal-glass-title',
+                        htmlContainer: 'swal-glass-text',
+                        confirmButton: 'swal-glass-button',
                     }
                 });
             }
@@ -98,9 +102,10 @@ const SendRequestSection = () => {
     };
 
     return (
-        <section className="bg-white/5 border border-white/5 backdrop-blur-xl rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+        <section className="bg-white/[0.03] border border-white/10 backdrop-blur-2xl rounded-[2rem] p-6 shadow-2xl relative overflow-hidden">
             {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/10 rounded-full blur-[60px] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/5 rounded-full blur-[60px] pointer-events-none" />
 
             <div className="space-y-8 relative z-10">
                 {/* ---- Title ---- */}
@@ -115,10 +120,9 @@ const SendRequestSection = () => {
 
                 <div className="grid grid-cols-1 gap-8">
                     {/* ---- Agent Info ---- */}
-                    <div className="bg-[#0a0a0a] border border-white/10 p-6 rounded-2xl shadow-lg space-y-6 text-center">
-                        <div className="w-20 h-20 mx-auto rounded-full border-2 border-orange-500 p-1">
-                            <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-3xl">👤</div>
-                            {/* Use real image if available */}
+                    <div className="bg-white/[0.03] border border-white/10 p-6 rounded-2xl shadow-lg space-y-5 text-center backdrop-blur-md">
+                        <div className="w-20 h-20 mx-auto rounded-full border-2 border-orange-500/50 p-1 bg-white/5">
+                            <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-2xl">👤</div>
                         </div>
 
                         <div>
@@ -139,15 +143,15 @@ const SendRequestSection = () => {
                             </div>
                         </div>
 
-                        <div className="flex gap-4 justify-center pt-2">
-                            <SocialIcon Icon={FaFacebookF} color="bg-[#1877F2]" />
-                            <SocialIcon Icon={FaTwitter} color="bg-[#1DA1F2]" />
-                            <SocialIcon Icon={FaLinkedinIn} color="bg-[#0A66C2]" />
-                            <SocialIcon Icon={FaWhatsapp} color="bg-[#25D366]" />
+                        <div className="flex gap-3 justify-center pt-2">
+                            <SocialIcon Icon={FaFacebookF} color="bg-[#1877F2]/80" />
+                            <SocialIcon Icon={FaTwitter} color="bg-[#1DA1F2]/80" />
+                            <SocialIcon Icon={FaLinkedinIn} color="bg-[#0A66C2]/80" />
+                            <SocialIcon Icon={FaWhatsapp} color="bg-[#25D366]/80" />
                         </div>
 
-                        <button className="w-full bg-white/10 hover:bg-white/20 text-white py-3 rounded-xl flex items-center justify-center gap-2 transition-all font-semibold border border-white/10">
-                            <IoChatbubbleEllipsesOutline size={20} />
+                        <button className="w-full bg-white/10 hover:bg-white/15 text-white py-3 rounded-full flex items-center justify-center gap-2 transition-all font-semibold border border-white/10 backdrop-blur-md">
+                            <IoChatbubbleEllipsesOutline size={18} />
                             Chat Now
                         </button>
                     </div>
@@ -192,29 +196,29 @@ const SendRequestSection = () => {
                             </InputGroup>
 
                             <div className="grid grid-cols-2 gap-3">
-                                <div className="bg-[#0a0a0a] border border-white/10 rounded-xl p-2">
-                                    <label className="text-xs text-gray-500 block px-2">Date</label>
+                                <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-3 backdrop-blur-md">
+                                    <label className="text-[10px] text-gray-500 block px-1 uppercase tracking-wide font-medium">Date</label>
                                     <input type="date" {...register("date")} className="w-full bg-transparent text-white text-sm p-1 focus:outline-none scheme-dark" />
                                 </div>
-                                <div className="bg-[#0a0a0a] border border-white/10 rounded-xl p-2">
-                                    <label className="text-xs text-gray-500 block px-2">Time</label>
+                                <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-3 backdrop-blur-md">
+                                    <label className="text-[10px] text-gray-500 block px-1 uppercase tracking-wide font-medium">Time</label>
                                     <input type="time" {...register("time")} className="w-full bg-transparent text-white text-sm p-1 focus:outline-none scheme-dark" />
                                 </div>
                             </div>
 
                             {/* Message */}
-                            <div className="bg-[#0a0a0a] border border-white/10 rounded-xl focus-within:border-orange-500/50 transition-colors">
+                            <div className="bg-white/[0.03] border border-white/10 rounded-2xl focus-within:border-orange-500/50 transition-colors backdrop-blur-md">
                                 <textarea
                                     {...register("buyerMessage")}
                                     rows={3}
-                                    className="w-full bg-transparent text-white p-3 border-none focus:ring-0 resize-none placeholder-gray-600"
-                                    placeholder="Any specific requests?"
+                                    className="w-full bg-transparent text-white p-4 border-none focus:ring-0 resize-none placeholder-gray-600 text-sm"
+                                    placeholder="Any specific requests or questions?"
                                 />
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full bg-linear-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20 transition-all active:scale-95"
+                                className="w-full bg-linear-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-bold py-4 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-orange-500/25 transition-all active:scale-[0.98] border border-orange-400/20"
                             >
                                 <BsSend />
                                 Submit Request
@@ -228,14 +232,14 @@ const SendRequestSection = () => {
 };
 
 const SocialIcon = ({ Icon, color }) => (
-    <div className={`${color} p-2 rounded-full cursor-pointer hover:scale-110 transition-transform`}>
-        <Icon className="text-white text-sm" />
+    <div className={`${color} p-2.5 rounded-full cursor-pointer hover:scale-110 transition-transform backdrop-blur-md border border-white/10`}>
+        <Icon className="text-white text-xs" />
     </div>
 );
 
 const InputGroup = ({ label, icon, children }) => (
-    <div className="bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden focus-within:border-orange-500/50 transition-colors">
-        <div className="flex items-center gap-2 px-3 pt-2 text-gray-500 text-xs font-bold uppercase tracking-wider">
+    <div className="bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden focus-within:border-orange-500/50 transition-colors backdrop-blur-md">
+        <div className="flex items-center gap-2 px-4 pt-3 text-gray-500 text-[10px] font-semibold uppercase tracking-wider">
             {icon} {label}
         </div>
         {children}
