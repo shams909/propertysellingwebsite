@@ -46,7 +46,7 @@ const LatestPropertyCard = ({ item }) => {
         {/* 🔘 Action Button */}
         <Link
           to={`all-property/${item._id}`}
-          className="w-full py-3 rounded-xl bg-white/10 hover:bg-orange-600 backdrop-blur-md border border-white/10 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:border-orange-500"
+          className="w-full py-3 rounded-4xl bg-white/10 hover:bg-orange-600 backdrop-blur-md border border-white/10 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:border-orange-500"
         >
           <MdOutlineReadMore className="text-xl" />
           See Details
