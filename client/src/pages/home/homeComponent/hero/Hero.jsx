@@ -55,7 +55,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/dashboard" onClick={() => handleRoleSelect("buyer")}>
                 <button className="group relative w-full sm:w-auto px-8 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold shadow-lg shadow-orange-500/25 transition-all active:scale-95 flex items-center justify-center gap-2 overflow-hidden">
-                  <span className="relative z-10">Start Buying</span>
+                  <span className="relative z-10">Go as a Buyer</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
                   <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
                 </button>
@@ -63,7 +63,7 @@ const Hero = () => {
 
               <Link to="/dashboard" onClick={() => handleRoleSelect("seller")}>
                 <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold backdrop-blur-sm transition-all active:scale-95 flex items-center justify-center gap-2">
-                  List Property
+                  Go as a Seller
                   <Home className="w-4 h-4 text-gray-400" />
                 </button>
               </Link>
