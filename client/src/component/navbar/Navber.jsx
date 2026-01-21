@@ -82,10 +82,10 @@ const Navbar = () => {
             {user?.email ? (
               <div className="flex gap-4 items-center">
                 {/* Favourite, Notifications, Chat */}
-                <div className="flex gap-1 items-center">
+                <div className="flex gap-2 items-center">
                   <div
                     role="button"
-                    className="btn btn-ghost btn-circle btn-sm tooltip tooltip-bottom text-white hover:bg-white/10"
+                    className="btn btn-ghost btn-circle btn-sm mr-2 tooltip tooltip-bottom text-white hover:bg-white/10"
                     data-tip="Favourites"
                   >
                     <Link to="/dashboard/favourites" className="indicator group">
@@ -103,9 +103,10 @@ const Navbar = () => {
                   {rule == "admin" && (
                     <Link
                       to={"/dashboard"}
-                      className="hidden md:flex btn btn-sm bg-orange-600 hover:bg-orange-700 text-white rounded-full items-center gap-2 px-4 shadow-md border-none"
+                      className="hidden md:flex btn btn-sm bg-white/10 hover:bg-white/15 text-white rounded-full items-center gap-2 px-5 border border-white/20 backdrop-blur-md shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] transition-all duration-300 hover:border-orange-500/50 group"
                     >
-                      <FiLayout /> Dashboard
+                      <FiLayout className="group-hover:rotate-12 transition-transform duration-300" />
+                      <span className="bg-gradient-to-r from-white to-orange-200 bg-clip-text text-transparent font-semibold">Dashboard</span>
                     </Link>
                   )}
                 </div>
@@ -139,10 +140,10 @@ const Navbar = () => {
                       </Link>
                     </li>
                     {rule == "admin" && (
-                      <li  >
+                      <li>
                         <Link
                           to={"/dashboard"}
-                          className="md:hidden flex items-center gap-2 py-3 font-medium hover:bg-white/10 hover:text-white"
+                          className="md:hidden flex items-center gap-2 py-3 font-medium hover:bg-orange-500/10 text-orange-400 hover:text-orange-300"
                         >
                           <FiLayout className="text-lg" /> Dashboard
                         </Link>
