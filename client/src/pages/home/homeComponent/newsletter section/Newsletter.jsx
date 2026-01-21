@@ -1,5 +1,5 @@
 import React from "react";
-import newsletterBg from "../../../../assets/newsletterbg.jpg";
+import newsletterBg from "../../../../assets/newsletterbgblack.png";
 
 const Newsletter = () => {
   return (
